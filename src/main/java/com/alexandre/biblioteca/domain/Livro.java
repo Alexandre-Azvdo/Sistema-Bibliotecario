@@ -4,9 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Livro implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titulo;
 	private String snopse;
@@ -15,14 +26,20 @@ public class Livro implements Serializable{
 	private String editora;
 	private String genero;
 	private String idioma;
+	private String numPaginas;
 	
+	@ManyToMany
+	@JoinTable(name = "LIVRO_AUTOR",
+		joinColumns = @JoinColumn(name = "livro_id"),
+		inverseJoinColumns = @JoinColumn(name = "autor_id")
+			)
 	private List<Autor> autores = new ArrayList<>();
 	
 	public Livro() {
 		
 	}
 	
-	public Livro(Integer id, String titulo, String snopse, String isbn, String edicao, String editora, String genero, String idioma) {
+	public Livro(Integer id, String titulo, String snopse, String isbn, String edicao, String editora, String genero, String idioma, String numPaginas) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -32,6 +49,7 @@ public class Livro implements Serializable{
 		this.editora = editora;
 		this.genero = genero;
 		this.idioma = idioma;
+		this.numPaginas = numPaginas;
 	}
 
 	public Integer getId() {
@@ -96,6 +114,14 @@ public class Livro implements Serializable{
 
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
+	}
+
+	public String getNumPaginas() {
+		return numPaginas;
+	}
+
+	public void setNumPaginas(String numPaginas) {
+		this.numPaginas = numPaginas;
 	}
 
 	public List<Autor> getAutores() {
