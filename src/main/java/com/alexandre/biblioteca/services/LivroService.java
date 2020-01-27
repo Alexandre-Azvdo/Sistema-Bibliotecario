@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.alexandre.biblioteca.domain.Livro;
 import com.alexandre.biblioteca.repositories.LivroRepository;
+import com.alexandre.biblioteca.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class LivroService {
@@ -16,6 +17,7 @@ public class LivroService {
 
 	public Livro buscar(Integer id) {
 		Optional<Livro> obj = livroRepository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Livro.class.getName()));
 	}
 }

@@ -17,7 +17,7 @@ public class LivroResource {
 	@Autowired
 	private LivroService livroService;
 
-	@RequestMapping(value = "/id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		Livro obj = livroService.buscar(id);
 		

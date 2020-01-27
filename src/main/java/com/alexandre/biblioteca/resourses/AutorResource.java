@@ -17,10 +17,9 @@ public class AutorResource {
 	@Autowired
 	private AutorService autorService;
 	
-	@RequestMapping(value = "/id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		Autor obj = autorService.buscar(id);
-		
 		return ResponseEntity.ok().body(obj);
 	}
 }

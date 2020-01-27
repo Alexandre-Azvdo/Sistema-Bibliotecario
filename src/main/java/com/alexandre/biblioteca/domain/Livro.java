@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Livro implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -28,6 +30,7 @@ public class Livro implements Serializable{
 	private String idioma;
 	private String numPaginas;
 	
+	@JsonManagedReference
 	@ManyToMany
 	@JoinTable(name = "LIVRO_AUTOR",
 		joinColumns = @JoinColumn(name = "livro_id"),
