@@ -14,6 +14,7 @@ public class Livro implements Serializable{
 	private String edicao;
 	private String editora;
 	private String genero;
+	private String idioma;
 	
 	private List<Autor> autores = new ArrayList<>();
 	
@@ -21,7 +22,7 @@ public class Livro implements Serializable{
 		
 	}
 	
-	public Livro(Integer id, String titulo, String snopse, String isbn, String edicao, String editora, String genero) {
+	public Livro(Integer id, String titulo, String snopse, String isbn, String edicao, String editora, String genero, String idioma) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -30,6 +31,7 @@ public class Livro implements Serializable{
 		this.edicao = edicao;
 		this.editora = editora;
 		this.genero = genero;
+		this.idioma = idioma;
 	}
 
 	public Integer getId() {
@@ -86,6 +88,14 @@ public class Livro implements Serializable{
 
 	public void setGenero(String genero) {
 		this.genero = genero;
+	}
+
+	public String getIdioma() {
+		return idioma;
+	}
+
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
 	}
 
 	public List<Autor> getAutores() {
