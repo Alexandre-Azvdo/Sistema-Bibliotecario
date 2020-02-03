@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -15,14 +17,15 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Livro implements Serializable{
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Livro implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titulo;
-	private String snopse;
+	private String sinopse;
 	private String isbn;
 	private String edicao;
 	private String editora;
@@ -42,11 +45,11 @@ public class Livro implements Serializable{
 		
 	}
 	
-	public Livro(Integer id, String titulo, String snopse, String isbn, String edicao, String editora, String genero, String idioma, String numPaginas) {
+	public Livro(Integer id, String titulo, String sinopse, String isbn, String edicao, String editora, String genero, String idioma, String numPaginas) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
-		this.snopse = snopse;
+		this.sinopse = sinopse;
 		this.isbn = isbn;
 		this.edicao = edicao;
 		this.editora = editora;
@@ -71,12 +74,12 @@ public class Livro implements Serializable{
 		this.titulo = titulo;
 	}
 
-	public String getSnopse() {
-		return snopse;
+	public String getSinopse() {
+		return sinopse;
 	}
 
-	public void setSnopse(String snopse) {
-		this.snopse = snopse;
+	public void setSinopse(String sinopse) {
+		this.sinopse = sinopse;
 	}
 
 	public String getIsbn() {
