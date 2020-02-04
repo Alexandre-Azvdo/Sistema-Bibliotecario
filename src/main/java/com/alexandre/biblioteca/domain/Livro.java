@@ -38,7 +38,7 @@ public abstract class Livro implements Serializable {
 	@JoinTable(name = "LIVRO_AUTOR",
 		joinColumns = @JoinColumn(name = "livro_id"),
 		inverseJoinColumns = @JoinColumn(name = "autor_id")
-			)
+	)
 	private List<Autor> autores = new ArrayList<>();
 	
 	public Livro() {

@@ -1,10 +1,15 @@
 package com.alexandre.biblioteca.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import com.alexandre.biblioteca.domain.enums.StatusLivro;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Exemplar extends Livro {
@@ -16,12 +21,13 @@ public class Exemplar extends Livro {
 	private Double preco_unitario;
 	private Integer situacao;
 	
-	//private Emprestimo emprestimo;
+//	@JsonManagedReference
+//	@OneToMany(mappedBy = "exemplar", cascade = CascadeType.ALL)
+//	private List<Emprestimo> emprestimos = new ArrayList<>();
 	
 	public Exemplar() {
 		
 	}
-
 	
 	public Exemplar(Integer id, String titulo, String sinopse, String isbn, String edicao, String editora,
 			String genero, String idioma, String numPaginas, 
@@ -78,5 +84,14 @@ public class Exemplar extends Livro {
 	public void setSituacao(Integer situacao) {
 		this.situacao = situacao;
 	}
+
+//	public List<Emprestimo> getEmprestimos() {
+//		return emprestimos;
+//	}
+//
+//
+//	public void setEmprestimos(List<Emprestimo> emprestimos) {
+//		this.emprestimos = emprestimos;
+//	}
 	
 }
