@@ -27,15 +27,11 @@ public class Emprestimo implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "leitor_id")
 	private Leitor leitor;
-
-	/*
-	 * @JsonBackReference
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "exemplar_id") private Exemplar exemplar;
-	 */
-
+	
+//	@JsonBackReference	  
+//	@ManyToOne	  
+//	@JoinColumn(name = "exemplar_id") private Exemplar exemplar;
+	
 	public Emprestimo() {
 
 	}
