@@ -5,19 +5,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alexandre.biblioteca.domain.Livro;
-import com.alexandre.biblioteca.repositories.LivroRepository;
+import com.alexandre.biblioteca.domain.Exemplar;
+import com.alexandre.biblioteca.repositories.ExemplarRepository;
 import com.alexandre.biblioteca.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class LivroService {
+public class ExemplarService {
 	
 	@Autowired
-	private LivroRepository repo;
+	private ExemplarRepository repo;
 
-	public Livro buscar(Integer id) {
-		Optional<Livro> obj = repo.findById(id);
+	public Exemplar buscar(Integer id) {
+		Optional<Exemplar> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Livro.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Exemplar.class.getName()));
 	}
 }

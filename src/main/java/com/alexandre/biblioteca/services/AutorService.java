@@ -13,10 +13,10 @@ import com.alexandre.biblioteca.services.exceptions.ObjectNotFoundException;
 public class AutorService {
 
 	@Autowired
-	private AutorRepository autorRepository;
+	private AutorRepository repo;
 	
 	public Autor buscar(Integer id) {
-		Optional<Autor> obj = autorRepository.findById(id);
+		Optional<Autor> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Autor.class.getName()));
 	}

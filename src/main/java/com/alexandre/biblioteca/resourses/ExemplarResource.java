@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alexandre.biblioteca.domain.Autor;
-import com.alexandre.biblioteca.services.AutorService;
+import com.alexandre.biblioteca.domain.Exemplar;
+import com.alexandre.biblioteca.services.ExemplarService;
 
 @RestController
-@RequestMapping(value = "/autores")
-public class AutorResource {
+@RequestMapping(value = "/exemplares")
+public class ExemplarResource {
 
 	@Autowired
-	private AutorService service;
+	private ExemplarService service;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Autor obj = service.buscar(id);
+		Exemplar obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

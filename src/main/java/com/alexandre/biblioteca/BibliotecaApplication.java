@@ -17,6 +17,7 @@ import com.alexandre.biblioteca.domain.enums.StatusLeitor;
 import com.alexandre.biblioteca.domain.enums.StatusLivro;
 import com.alexandre.biblioteca.repositories.AutorRepository;
 import com.alexandre.biblioteca.repositories.EmprestimoRepository;
+import com.alexandre.biblioteca.repositories.ExemplarRepository;
 import com.alexandre.biblioteca.repositories.LeitorRepository;
 import com.alexandre.biblioteca.repositories.LivroRepository;
 
@@ -31,6 +32,8 @@ public class BibliotecaApplication implements CommandLineRunner{
 	private EmprestimoRepository emprestimoRepository;
 	@Autowired
 	private LeitorRepository leitorRepository;
+	@Autowired
+	private ExemplarRepository exemplarRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BibliotecaApplication.class, args);
@@ -64,7 +67,7 @@ public class BibliotecaApplication implements CommandLineRunner{
 		Exemplar exemplar22 = new Exemplar(null, "LIVRO-2020-01-14434", true, sdf.parse("03/01/2020 15:04"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
 				 		
 		Autor a1 = new Autor(null,"Monteiro Lobato");
-		Autor a2 = new Autor(null,"Machado de Assis");
+		Autor a2 = new Autor(null,"Machado de Assis");		
 		
 		livro1.getAutores().addAll(Arrays.asList(a1));
 		livro2.getAutores().addAll(Arrays.asList(a1));
@@ -75,6 +78,12 @@ public class BibliotecaApplication implements CommandLineRunner{
 		
 		autorRepository.saveAll(Arrays.asList(a1, a2));
 		livroRepository.saveAll(Arrays.asList(livro1, livro2, livro3));
+		exemplarRepository.saveAll(
+				Arrays.asList(
+					exemplar0, exemplar1, exemplar2, exemplar3,
+					exemplar10, exemplar11,exemplar12, exemplar13, 
+					exemplar20, exemplar21, exemplar22)
+				);
 		
 		Leitor leitor1 = new Leitor(null, "Alexandre Azevedo", sdf.parse("21/05/1985 00:00"), "054.630.324-24", StatusLeitor.ATIVO);
 		Leitor leitor2 = new Leitor(null, "Gustavo Rafael", sdf.parse("26/03/2019 07:00"), "021.310.665-98", StatusLeitor.ATIVO);

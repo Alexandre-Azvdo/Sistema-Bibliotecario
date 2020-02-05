@@ -15,11 +15,11 @@ import com.alexandre.biblioteca.services.LivroService;
 public class LivroResource {
 	
 	@Autowired
-	private LivroService livroService;
+	private LivroService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Livro obj = livroService.buscar(id);		
+		Livro obj = service.buscar(id);		
 		return ResponseEntity.ok().body(obj);		
 	}
 }
