@@ -13,6 +13,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -40,6 +41,10 @@ public abstract class Livro implements Serializable {
 		inverseJoinColumns = @JoinColumn(name = "autor_id")
 	)
 	private List<Autor> autores = new ArrayList<>();
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "exemplar")
+	private List<Emprestimo> emprestimos = new ArrayList<>();
 	
 	public Livro() {
 		
@@ -136,6 +141,14 @@ public abstract class Livro implements Serializable {
 
 	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
+	}
+
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
 	}
 
 	@Override

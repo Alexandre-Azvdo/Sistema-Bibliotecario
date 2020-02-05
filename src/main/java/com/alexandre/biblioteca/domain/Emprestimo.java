@@ -28,9 +28,13 @@ public class Emprestimo implements Serializable {
 	@JoinColumn(name = "leitor_id")
 	private Leitor leitor;
 	
-//	@JsonBackReference	  
-//	@ManyToOne	  
-//	@JoinColumn(name = "exemplar_id") private Exemplar exemplar;
+	@JsonBackReference	  
+	@ManyToOne(cascade = { //Resolvido problema : detached entity passed to persist spring
+			CascadeType.MERGE,
+            CascadeType.REFRESH}
+	)	  
+	@JoinColumn(name = "exemplar_id") 
+	private Exemplar exemplar;
 	
 	public Emprestimo() {
 
@@ -42,7 +46,7 @@ public class Emprestimo implements Serializable {
 		this.data_inicial = data_inicial;
 		this.data_entrega = data_entrega;
 		this.leitor = leitor;
-		// this.exemplar = exemplar;
+		this.exemplar = exemplar;
 	}
 
 	public Integer getId() {
@@ -77,13 +81,13 @@ public class Emprestimo implements Serializable {
 		this.leitor = leitor;
 	}
 
-//	public Exemplar getExemplar() {
-//		return exemplar;
-//	}
-//
-//	public void setExemplar(Exemplar exemplar) {
-//		this.exemplar = exemplar;
-//	}
+	public Exemplar getExemplar() {
+		return exemplar;
+	}
+
+	public void setExemplar(Exemplar exemplar) {
+		this.exemplar = exemplar;
+	}
 
 	@Override
 	public int hashCode() {

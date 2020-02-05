@@ -19,8 +19,7 @@ public class LivroResource {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Livro obj = livroService.buscar(id);
-		
+		Livro obj = livroService.buscar(id);		
 		return ResponseEntity.ok().body(obj);		
 	}
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -21,9 +20,9 @@ public class Exemplar extends Livro {
 	private Double preco_unitario;
 	private Integer situacao;
 	
-//	@JsonManagedReference
-//	@OneToMany(mappedBy = "exemplar", cascade = CascadeType.ALL)
-//	private List<Emprestimo> emprestimos = new ArrayList<>();
+	@JsonManagedReference
+	@OneToMany(mappedBy = "exemplar")
+	private List<Emprestimo> emprestimos = new ArrayList<>();
 	
 	public Exemplar() {
 		
@@ -85,13 +84,12 @@ public class Exemplar extends Livro {
 		this.situacao = situacao;
 	}
 
-//	public List<Emprestimo> getEmprestimos() {
-//		return emprestimos;
-//	}
-//
-//
-//	public void setEmprestimos(List<Emprestimo> emprestimos) {
-//		this.emprestimos = emprestimos;
-//	}
-	
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
+	}
+	// Não aplementatar HashCode() & Equals(), ficão na classe Livro(Classe pai)
 }

@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alexandre.biblioteca.domain.Emprestimo;
-import com.alexandre.biblioteca.services.EmprestimoService;
+import com.alexandre.biblioteca.domain.Leitor;
+import com.alexandre.biblioteca.services.LeitorService;
 
 @RestController
-@RequestMapping(value = "/emprestimos")
-public class EmprestimoResource {
+@RequestMapping(value = "/leitores")
+public class LeitorResource {
 
 	@Autowired
-	private EmprestimoService service;
+	private LeitorService service;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Emprestimo obj = service.buscar(id);
+		Leitor obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }
