@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -18,8 +18,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Livro implements Serializable {
+public class Livro implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -28,7 +27,6 @@ public abstract class Livro implements Serializable {
 	private String titulo;
 	private String sinopse;
 	private String isbn;
-	private String edicao;
 	private String editora;
 	private String genero;
 	private String idioma;
@@ -43,20 +41,20 @@ public abstract class Livro implements Serializable {
 	private List<Autor> autores = new ArrayList<>();
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "exemplar")
-	private List<Emprestimo> emprestimos = new ArrayList<>();
+	@OneToMany(mappedBy = "livro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Exemplar> exemplares = new ArrayList<>();
 	
 	public Livro() {
 		
 	}
 	
-	public Livro(Integer id, String titulo, String sinopse, String isbn, String edicao, String editora, String genero, String idioma, String numPaginas) {
+	public Livro(Integer id, String titulo, String sinopse, String isbn, String editora,
+			String genero, String idioma, String numPaginas) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.sinopse = sinopse;
 		this.isbn = isbn;
-		this.edicao = edicao;
 		this.editora = editora;
 		this.genero = genero;
 		this.idioma = idioma;
@@ -93,14 +91,6 @@ public abstract class Livro implements Serializable {
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
-	}
-
-	public String getEdicao() {
-		return edicao;
-	}
-
-	public void setEdicao(String edicao) {
-		this.edicao = edicao;
 	}
 
 	public String getEditora() {
@@ -141,14 +131,14 @@ public abstract class Livro implements Serializable {
 
 	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
+	}	
+
+	public List<Exemplar> getExemplares() {
+		return exemplares;
 	}
 
-	public List<Emprestimo> getEmprestimos() {
-		return emprestimos;
-	}
-
-	public void setEmprestimos(List<Emprestimo> emprestimos) {
-		this.emprestimos = emprestimos;
+	public void setExemplares(List<Exemplar> exemplares) {
+		this.exemplares = exemplares;
 	}
 
 	@Override
