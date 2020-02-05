@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.alexandre.biblioteca.domain.enums.StatusLeitor;
+import com.alexandre.biblioteca.domain.Endereco;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -29,6 +30,10 @@ public class Leitor implements Serializable {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "leitor")
 	private List<Emprestimo> emprestimos = new ArrayList<>();
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "leitor")
+	private List<Endereco> enderecos = new ArrayList<>();
 	
 	public Leitor() {
 		

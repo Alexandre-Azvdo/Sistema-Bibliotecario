@@ -80,9 +80,10 @@ public class BibliotecaApplication implements CommandLineRunner{
 		livroRepository.saveAll(Arrays.asList(livro1, livro2, livro3));
 		exemplarRepository.saveAll(
 				Arrays.asList(
-					exemplar0, exemplar1, exemplar2, exemplar3,
-					exemplar10, exemplar11,exemplar12, exemplar13, 
-					exemplar20, exemplar21, exemplar22)
+						exemplar0, exemplar1, exemplar2, exemplar3,
+						exemplar10, exemplar11,exemplar12, exemplar13, 
+						exemplar20, exemplar21, exemplar22
+					)
 				);
 		
 		Leitor leitor1 = new Leitor(null, "Alexandre Azevedo", sdf.parse("21/05/1985 00:00"), "054.630.324-24", StatusLeitor.ATIVO);
