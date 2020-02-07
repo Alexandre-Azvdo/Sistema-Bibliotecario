@@ -12,9 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.alexandre.biblioteca.domain.enums.StatusEmprestimo;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Emprestimo implements Serializable {
@@ -32,12 +31,11 @@ public class Emprestimo implements Serializable {
 	
 	private Integer status;
 
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "leitor_id")
 	private Leitor leitor;
 	
-	@JsonBackReference	  
+	@JsonIgnore	  
 	@ManyToOne(cascade = { //Resolvido problema : detached entity passed to persist spring
 			CascadeType.MERGE,
             CascadeType.REFRESH}

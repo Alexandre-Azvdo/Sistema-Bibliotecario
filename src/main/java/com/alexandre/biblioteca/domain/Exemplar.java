@@ -14,9 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.alexandre.biblioteca.domain.enums.StatusLivro;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Exemplar implements Serializable {
@@ -34,11 +33,10 @@ public class Exemplar implements Serializable {
 	private Integer situacao;
 	private String edicao;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy = "exemplar")
 	private List<Emprestimo> emprestimos = new ArrayList<>();
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "livro_id")
 	private Livro livro;

@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Autor implements Serializable{
@@ -21,7 +21,7 @@ public class Autor implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany(mappedBy = "autores")
 	private List<Livro> livros = new ArrayList<>();
 	

@@ -15,9 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.alexandre.biblioteca.domain.enums.StatusLeitor;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Leitor implements Serializable {
@@ -37,11 +36,10 @@ public class Leitor implements Serializable {
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy = "leitor", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 			
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "leitor", cascade = CascadeType.ALL)
 	private List<Emprestimo> emprestimos = new ArrayList<>();
 			
