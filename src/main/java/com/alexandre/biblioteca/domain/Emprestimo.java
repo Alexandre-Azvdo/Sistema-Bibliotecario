@@ -24,7 +24,7 @@ public class Emprestimo implements Serializable {
 	private Date data_entrega;
 
 	@JsonBackReference
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "leitor_id")
 	private Leitor leitor;
 	

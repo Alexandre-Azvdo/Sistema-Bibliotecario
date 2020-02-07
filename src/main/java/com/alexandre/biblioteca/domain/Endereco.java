@@ -2,6 +2,7 @@ package com.alexandre.biblioteca.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,28 +21,31 @@ public class Endereco implements Serializable {
 	private Integer id;
 	private String logradouro;
 	private String numero;
+	private String complemento;
 	private String bairro;
 	private String cep;
+	
+	@JsonBackReference
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "leitor_id")
+	private Leitor leitor;
 	
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
 	
-	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name = "leitor_id")
-	private Leitor leitor;
 	
 	public Endereco() {
 		
 	}
 
-	public Endereco(Integer id, String logradouro, String numero, String bairro, String cep, Cidade cidade, Leitor leitor) {
+	public Endereco(Integer id, String logradouro, String numero, String bairro, String complemento, String cep, Cidade cidade, Leitor leitor) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.bairro = bairro;
+		this.complemento = complemento;
 		this.cep = cep;
 		this.cidade = cidade;
 		this.leitor = leitor;
@@ -77,6 +81,14 @@ public class Endereco implements Serializable {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public String getCep() {
