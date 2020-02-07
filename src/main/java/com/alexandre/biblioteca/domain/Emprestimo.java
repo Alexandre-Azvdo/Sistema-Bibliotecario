@@ -11,7 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.alexandre.biblioteca.domain.enums.StatusEmprestimo;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Emprestimo implements Serializable {
@@ -20,10 +23,16 @@ public class Emprestimo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date data_inicial;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date data_entrega;
+	
+	private Integer status;
 
-	@JsonBackReference
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "leitor_id")
 	private Leitor leitor;
@@ -40,11 +49,12 @@ public class Emprestimo implements Serializable {
 
 	}
 
-	public Emprestimo(Integer id, Date data_inicial, Date data_entrega, Leitor leitor, Exemplar exemplar) {
+	public Emprestimo(Integer id, Date data_inicial, Date data_entrega, StatusEmprestimo status, Leitor leitor, Exemplar exemplar) {
 		super();
 		this.id = id;
 		this.data_inicial = data_inicial;
 		this.data_entrega = data_entrega;
+		this.status = status.getCod();
 		this.leitor = leitor;
 		this.exemplar = exemplar;
 	}
@@ -71,6 +81,14 @@ public class Emprestimo implements Serializable {
 
 	public void setData_entrega(Date data_entrega) {
 		this.data_entrega = data_entrega;
+	}
+
+	public StatusEmprestimo getStatus() {
+		return StatusEmprestimo.toEnum(status);
+	}
+
+	public void setStatus(StatusEmprestimo status) {
+		this.status = status.getCod();
 	}
 
 	public Leitor getLeitor() {

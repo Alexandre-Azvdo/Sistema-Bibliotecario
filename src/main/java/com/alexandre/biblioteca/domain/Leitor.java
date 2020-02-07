@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.alexandre.biblioteca.domain.enums.StatusLeitor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -25,6 +27,8 @@ public class Leitor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 	private String cpf;
 	private Integer situacao;
@@ -37,7 +41,7 @@ public class Leitor implements Serializable {
 	@OneToMany(mappedBy = "leitor", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 			
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "leitor", cascade = CascadeType.ALL)
 	private List<Emprestimo> emprestimos = new ArrayList<>();
 			

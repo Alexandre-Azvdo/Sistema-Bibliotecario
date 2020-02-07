@@ -14,6 +14,7 @@ import com.alexandre.biblioteca.domain.Endereco;
 import com.alexandre.biblioteca.domain.Exemplar;
 import com.alexandre.biblioteca.domain.Leitor;
 import com.alexandre.biblioteca.domain.Livro;
+import com.alexandre.biblioteca.domain.enums.StatusEmprestimo;
 import com.alexandre.biblioteca.domain.enums.StatusLeitor;
 import com.alexandre.biblioteca.domain.enums.StatusLivro;
 import com.alexandre.biblioteca.repositories.AutorRepository;
@@ -138,8 +139,8 @@ public class BibliotecaApplication implements CommandLineRunner{
 		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2, endereco3));		
 		contatoRepository.saveAll(Arrays.asList(contato1, contato2));
 		
-		Emprestimo emp1 = new Emprestimo(null, sdf.parse("04/02/2020 10:12"), sdf.parse("14/02/2020 08:00"), leitor1, exemplar1);
-		Emprestimo emp2 = new Emprestimo(null, sdf.parse("05/02/2020 09:30"), sdf.parse("28/02/2020 08:00"), leitor2, exemplar1);
+		Emprestimo emp1 = new Emprestimo(null, sdf.parse("04/02/2020 10:12"), sdf.parse("14/02/2020 08:00"), StatusEmprestimo.EM_ANDAMENTO, leitor1, exemplar1);
+		Emprestimo emp2 = new Emprestimo(null, sdf.parse("05/02/2020 09:30"), sdf.parse("28/02/2020 08:00"), StatusEmprestimo.CONCLUIDO, leitor2, exemplar1);
 				
 		leitor1.getEmprestimos().addAll(Arrays.asList(emp1));
 		leitor2.getEmprestimos().addAll(Arrays.asList(emp2));
