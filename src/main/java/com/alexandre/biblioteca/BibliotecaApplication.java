@@ -12,6 +12,7 @@ import com.alexandre.biblioteca.domain.Autor;
 import com.alexandre.biblioteca.domain.Emprestimo;
 import com.alexandre.biblioteca.domain.Endereco;
 import com.alexandre.biblioteca.domain.Exemplar;
+import com.alexandre.biblioteca.domain.Funcionario;
 import com.alexandre.biblioteca.domain.Leitor;
 import com.alexandre.biblioteca.domain.Livro;
 import com.alexandre.biblioteca.domain.enums.StatusEmprestimo;
@@ -24,6 +25,7 @@ import com.alexandre.biblioteca.repositories.EmprestimoRepository;
 import com.alexandre.biblioteca.repositories.EnderecoRepository;
 import com.alexandre.biblioteca.repositories.EstadoRepository;
 import com.alexandre.biblioteca.repositories.ExemplarRepository;
+import com.alexandre.biblioteca.repositories.FuncionarioRepository;
 import com.alexandre.biblioteca.repositories.LeitorRepository;
 import com.alexandre.biblioteca.repositories.LivroRepository;
 import com.alexandre.biblioteca.domain.Cidade;
@@ -51,6 +53,8 @@ public class BibliotecaApplication implements CommandLineRunner{
 	private EnderecoRepository enderecoRepository;
 	@Autowired
 	private ContatoRepository contatoRepository;
+	@Autowired
+	private FuncionarioRepository funcionarioRepository;
 	
 
 	public static void main(String[] args) {
@@ -119,7 +123,7 @@ public class BibliotecaApplication implements CommandLineRunner{
 		
 		Contato contato1 = new Contato(null);
 		Contato contato2 = new Contato(null);
-		
+				
 		contato1.getTelefones().addAll(Arrays.asList("(83)99654-7901"));
 		contato1.getEmails().addAll(Arrays.asList("azvdo.ads@gmail.com", "azvedo_xandy@hotmail.com"));
 		contato2.getTelefones().addAll(Arrays.asList("(83)98875-2134", "(83)99632-1127"));
@@ -128,22 +132,33 @@ public class BibliotecaApplication implements CommandLineRunner{
 		Leitor leitor1 = new Leitor(null, "Alexandre Azevedo", sdf.parse("21/05/1985 00:00"), "054.630.324-24", StatusLeitor.ATIVO, contato1);
 		Leitor leitor2 = new Leitor(null, "Gustavo Rafael", sdf.parse("26/03/2019 07:00"), "021.310.665-98", StatusLeitor.ATIVO, contato2);
 				
-		Endereco endereco1 = new Endereco(null, "Rua Pedro Francisco Maciel", "904", "Santa Rosa", "Residencial", "58540-000", c1, leitor1);
-		Endereco endereco2 = new Endereco(null, "Rua Praça da Bandeira", "s/n", "Centro", "Orgão Público", "63210-000", c3, leitor1);
-		Endereco endereco3 = new Endereco(null, "Av. Floriano Peixoto", "21", "Centro", "Apt. 300", "75440-000", c2, leitor2);
+		Endereco endereco1 = new Endereco(null, "Rua Pedro Francisco Maciel", "904", "Santa Rosa", "Residencial", "58540-000", c1);
+		Endereco endereco2 = new Endereco(null, "Rua Praça da Bandeira", "s/n", "Centro", "Orgão Público", "63210-000", c3);
+		Endereco endereco3 = new Endereco(null, "Av. Floriano Peixoto", "21", "Centro", "Apt. 300", "75440-000", c2);
 		
 		leitor1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
 		leitor2.getEnderecos().addAll(Arrays.asList(endereco3));		
 		
-		leitorRepository.saveAll(Arrays.asList(leitor1));
+		leitorRepository.saveAll(Arrays.asList(leitor1, leitor2));
 		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2, endereco3));		
 		contatoRepository.saveAll(Arrays.asList(contato1, contato2));
 		
-		Emprestimo emp1 = new Emprestimo(null, sdf.parse("04/02/2020 10:12"), sdf.parse("14/02/2020 08:00"), StatusEmprestimo.EM_ANDAMENTO, leitor1, exemplar1);
-		Emprestimo emp2 = new Emprestimo(null, sdf.parse("05/02/2020 09:30"), sdf.parse("28/02/2020 08:00"), StatusEmprestimo.CONCLUIDO, leitor2, exemplar1);
+		Contato contato3 = new Contato(null);
+		contato3.getEmails().addAll(Arrays.asList("maria@gmail.com", "maria@academico.com"));
+		contato3.getTelefones().addAll(Arrays.asList("(83)99543-9800", "(83)988766611"));
+		Endereco endereco4 = new Endereco(null, "Rua dos Sorrisos", "03", "Largo Alto", "Apt 02", "58540-000", c1);
+		
+		Funcionario funcionario1 = new Funcionario(null, "2020332212321", "Maria de Fátma Alves Lira", "435.321.112-98", contato3);
+		funcionario1.setEndereco(endereco4);
+		
+		funcionarioRepository.saveAll(Arrays.asList(funcionario1));
+		
+		Emprestimo emp1 = new Emprestimo(null, sdf.parse("04/02/2020 10:12"), sdf.parse("14/02/2020 08:00"), StatusEmprestimo.EM_ANDAMENTO, leitor1, funcionario1, exemplar1);
+		Emprestimo emp2 = new Emprestimo(null, sdf.parse("05/02/2020 09:30"), sdf.parse("28/02/2020 08:00"), StatusEmprestimo.CONCLUIDO, leitor2, funcionario1, exemplar1);
 				
 		leitor1.getEmprestimos().addAll(Arrays.asList(emp1));
 		leitor2.getEmprestimos().addAll(Arrays.asList(emp2));
+		funcionario1.getEmprestimos().addAll(Arrays.asList(emp1, emp2));
 		
 		exemplar1.getEmprestimos().addAll(Arrays.asList(emp1, emp2));
 				

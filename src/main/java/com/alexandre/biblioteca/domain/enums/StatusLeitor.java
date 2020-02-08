@@ -1,8 +1,9 @@
 package com.alexandre.biblioteca.domain.enums;
 
 public enum StatusLeitor {
+	
 	ATIVO(1, "Ativo"),
-	INATIVO(2, "Inativo"),
+	SUSPENSO(2, "Suspenso"),
 	PENDENTE(3, "Pendente");
 	
 	private int cod;

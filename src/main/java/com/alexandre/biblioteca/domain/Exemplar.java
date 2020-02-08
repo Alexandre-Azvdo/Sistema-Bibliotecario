@@ -30,7 +30,7 @@ public class Exemplar implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date data_aquisicao;
 	private Double preco_unitario;
-	private Integer situacao;
+	private Integer status;
 	private String edicao;
 	
 	@OneToMany(mappedBy = "exemplar")
@@ -46,14 +46,14 @@ public class Exemplar implements Serializable {
 	}
 
 	public Exemplar(Integer id, String identificador, Boolean qr_code, Date data_aquisicao, Double preco_unitario,
-			StatusLivro situacao, String edicao, Livro livro) {
+			StatusLivro status, String edicao, Livro livro) {
 		super();
 		this.id = id;
 		this.identificador = identificador;
 		this.qr_code = qr_code;
 		this.data_aquisicao = data_aquisicao;
 		this.preco_unitario = preco_unitario;
-		this.situacao = situacao.getCod();
+		this.status = status.getCod();
 		this.edicao = edicao;
 		this.livro = livro;
 	}
@@ -91,16 +91,16 @@ public class Exemplar implements Serializable {
 		this.preco_unitario = preco_unitario;
 	}
 
-	public StatusLivro getSituacao() {
-		return StatusLivro.toEnum(situacao);
+	public StatusLivro getStatus() {
+		return StatusLivro.toEnum(status);
 	}
 
-	public void setSituacao(StatusLivro situacao) {
-		this.situacao = situacao.getCod();
+	public void setStatus(StatusLivro status) {
+		this.status = status.getCod();
 	}
 
-	public void setSituacao(Integer situacao) {
-		this.situacao = situacao;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public List<Emprestimo> getEmprestimos() {

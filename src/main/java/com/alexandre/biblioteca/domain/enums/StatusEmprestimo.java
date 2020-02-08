@@ -2,8 +2,9 @@ package com.alexandre.biblioteca.domain.enums;
 
 public enum StatusEmprestimo {
 	
-	CONCLUIDO(1, "Concluido"),
-	EM_ANDAMENTO(2, "Em Andamento");
+	EM_ANDAMENTO(1, "Em Andamento"),
+	CONCLUIDO(2, "Concluído"),	
+	FORA_DO_PRAZO(3, "Fora do prazo");
 
 	private int cod;
 	private String descricao;

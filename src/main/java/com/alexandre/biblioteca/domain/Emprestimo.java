@@ -35,6 +35,10 @@ public class Emprestimo implements Serializable {
 	@JoinColumn(name = "leitor_id")
 	private Leitor leitor;
 	
+	@ManyToOne
+	@JoinColumn(name = "funcionario_id")
+	private Funcionario funcionario;
+	
 	@JsonIgnore	  
 	@ManyToOne(cascade = { //Resolvido problema : detached entity passed to persist spring
 			CascadeType.MERGE,
@@ -47,12 +51,13 @@ public class Emprestimo implements Serializable {
 
 	}
 
-	public Emprestimo(Integer id, Date data_inicial, Date data_entrega, StatusEmprestimo status, Leitor leitor, Exemplar exemplar) {
+	public Emprestimo(Integer id, Date data_inicial, Date data_entrega, StatusEmprestimo status, Leitor leitor, Funcionario funcionario, Exemplar exemplar) {
 		super();
 		this.id = id;
 		this.data_inicial = data_inicial;
 		this.data_entrega = data_entrega;
 		this.status = status.getCod();
+		this.funcionario = funcionario;
 		this.leitor = leitor;
 		this.exemplar = exemplar;
 	}
@@ -95,6 +100,14 @@ public class Emprestimo implements Serializable {
 
 	public void setLeitor(Leitor leitor) {
 		this.leitor = leitor;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	public Exemplar getExemplar() {

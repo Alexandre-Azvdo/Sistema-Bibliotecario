@@ -2,15 +2,12 @@ package com.alexandre.biblioteca.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Endereco implements Serializable {
@@ -25,11 +22,6 @@ public class Endereco implements Serializable {
 	private String bairro;
 	private String cep;
 	
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "leitor_id")
-	private Leitor leitor;
-	
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
@@ -39,7 +31,7 @@ public class Endereco implements Serializable {
 		
 	}
 
-	public Endereco(Integer id, String logradouro, String numero, String bairro, String complemento, String cep, Cidade cidade, Leitor leitor) {
+	public Endereco(Integer id, String logradouro, String numero, String bairro, String complemento, String cep, Cidade cidade) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
@@ -48,7 +40,6 @@ public class Endereco implements Serializable {
 		this.complemento = complemento;
 		this.cep = cep;
 		this.cidade = cidade;
-		this.leitor = leitor;
 	}
 
 	public Integer getId() {
@@ -105,15 +96,7 @@ public class Endereco implements Serializable {
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
-	}
-
-	public Leitor getLeitor() {
-		return leitor;
-	}
-
-	public void setLeitor(Leitor leitor) {
-		this.leitor = leitor;
-	}
+	}	
 
 	@Override
 	public int hashCode() {

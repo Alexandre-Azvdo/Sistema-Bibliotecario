@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,13 +31,16 @@ public class Leitor implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 	private String cpf;
-	private Integer situacao;
+	private Integer status;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
 	
-	@OneToMany(mappedBy = "leitor", cascade = CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="LEITOR_ENDERECO", 
+     		joinColumns = @JoinColumn(name="leitor_id"),
+     		inverseJoinColumns = @JoinColumn(name="endereco_id"))
 	private List<Endereco> enderecos = new ArrayList<>();
 			
 	@JsonIgnore
@@ -47,13 +51,13 @@ public class Leitor implements Serializable {
 		
 	}
 	
-	public Leitor(Integer id, String nome, Date dataNascimento, String cpf, StatusLeitor situacao, Contato contato) {
+	public Leitor(Integer id, String nome, Date dataNascimento, String cpf, StatusLeitor status, Contato contato) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
-		this.situacao = situacao.getCod();
+		this.status = status.getCod();
 		this.contato = contato;
 	}
 
@@ -89,12 +93,12 @@ public class Leitor implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public StatusLeitor getSituacao() {
-		return StatusLeitor.toEnum(situacao);
+	public StatusLeitor getStatus() {
+		return StatusLeitor.toEnum(status);
 	}
 
-	public void setSituacao(StatusLeitor situacao) {
-		this.situacao = situacao.getCod();
+	public void setStatus(StatusLeitor status) {
+		this.status = status.getCod();
 	}
 
 	public List<Emprestimo> getEmprestimos() {
