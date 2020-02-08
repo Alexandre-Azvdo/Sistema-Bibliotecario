@@ -20,4 +20,9 @@ public class AutorService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Autor.class.getName()));
 	}
+	
+	public Autor insert(Autor obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
 }
