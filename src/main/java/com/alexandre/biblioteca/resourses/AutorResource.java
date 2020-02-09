@@ -42,4 +42,10 @@ public class AutorResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Autor> delete(@PathVariable Integer id) {
+		service.delete(id);
+		return ResponseEntity.ok().build();
+	}
+	
 }
