@@ -19,7 +19,7 @@ public class LeitorResource {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Leitor> find(@PathVariable Integer id) {
-		Leitor obj = service.buscar(id);
+		Leitor obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

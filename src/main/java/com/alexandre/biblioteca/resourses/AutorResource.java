@@ -23,7 +23,7 @@ public class AutorResource {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Autor> find(@PathVariable Integer id) {
-		Autor obj = service.find(id);
+		Autor obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
