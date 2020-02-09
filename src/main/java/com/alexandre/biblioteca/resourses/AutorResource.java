@@ -1,6 +1,8 @@
 package com.alexandre.biblioteca.resourses;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.alexandre.biblioteca.domain.Autor;
+import com.alexandre.biblioteca.domain.dto.AutorDTO;
 import com.alexandre.biblioteca.services.AutorService;
 
 @RestController
@@ -48,4 +51,11 @@ public class AutorResource {
 		return ResponseEntity.ok().build();
 	}
 	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<AutorDTO>> findAll() {	
+		List<Autor> list = service.findAll();	
+		List<AutorDTO> listDto = list.stream().map(obj -> new AutorDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}
+		
 }

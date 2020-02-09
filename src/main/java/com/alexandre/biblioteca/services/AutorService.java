@@ -1,5 +1,6 @@
 package com.alexandre.biblioteca.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.alexandre.biblioteca.domain.Autor;
 import com.alexandre.biblioteca.repositories.AutorRepository;
-import com.alexandre.biblioteca.services.exceptions.DataIntegretyException;
+import com.alexandre.biblioteca.services.exceptions.DataIntegrityException;
 import com.alexandre.biblioteca.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -38,7 +39,11 @@ public class AutorService {
 		try {
 			repo.deleteById(id);
 		} catch(DataIntegrityViolationException e) {
-			throw new DataIntegretyException("Não é possível excluir um Autor que está associados a um livro!");
+			throw new DataIntegrityException("Não é possível excluir um Autor que está associados a um livro!");
 		}
+	}
+	
+	public List<Autor> findAll(){
+		return repo.findAll();
 	}
 }
