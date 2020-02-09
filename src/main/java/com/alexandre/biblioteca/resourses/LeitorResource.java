@@ -18,7 +18,7 @@ public class LeitorResource {
 	private LeitorService service;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Leitor> find(@PathVariable Integer id) {
 		Leitor obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}

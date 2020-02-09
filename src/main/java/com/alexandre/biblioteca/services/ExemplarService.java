@@ -15,7 +15,7 @@ public class ExemplarService {
 	@Autowired
 	private ExemplarRepository repo;
 
-	public Exemplar buscar(Integer id) {
+	public Exemplar findById(Integer id) {
 		Optional<Exemplar> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Exemplar.class.getName()));

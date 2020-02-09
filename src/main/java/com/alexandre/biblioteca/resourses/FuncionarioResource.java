@@ -18,7 +18,7 @@ public class FuncionarioResource {
 	private FuncionarioService service;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Funcionario> find(@PathVariable Integer id) {
 		Funcionario obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}

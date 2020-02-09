@@ -15,7 +15,7 @@ public class LivroService {
 	@Autowired
 	private LivroRepository repo;
 
-	public Livro buscar(Integer id) {
+	public Livro findById(Integer id) {
 		Optional<Livro> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Livro.class.getName()));

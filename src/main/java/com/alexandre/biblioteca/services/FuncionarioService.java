@@ -15,7 +15,7 @@ public class FuncionarioService {
 	@Autowired
 	private FuncionarioRepository repo;
 	
-	public Funcionario buscar(Integer id) {
+	public Funcionario findById(Integer id) {
 		Optional<Funcionario> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Funcionario.class.getName()));

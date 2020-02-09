@@ -15,7 +15,7 @@ public class LeitorService {
 	@Autowired
 	private LeitorRepository repo;
 
-	public Leitor buscar(Integer id) {
+	public Leitor findById(Integer id) {
 		Optional<Leitor> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Leitor.class.getName()));

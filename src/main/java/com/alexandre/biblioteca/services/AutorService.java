@@ -15,7 +15,7 @@ public class AutorService {
 	@Autowired
 	private AutorRepository repo;
 	
-	public Autor buscar(Integer id) {
+	public Autor findById(Integer id) {
 		Optional<Autor> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Autor.class.getName()));
@@ -23,6 +23,11 @@ public class AutorService {
 	
 	public Autor insert(Autor obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Autor update(Autor obj) {
+		findById(obj.getId());
 		return repo.save(obj);
 	}
 }

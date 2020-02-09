@@ -18,7 +18,7 @@ public class ExemplarResource {
 	private ExemplarService service;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Exemplar> find(@PathVariable Integer id) {
 		Exemplar obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}
