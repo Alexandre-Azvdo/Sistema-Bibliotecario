@@ -168,7 +168,7 @@ public class BibliotecaApplication implements CommandLineRunner{
 		
 		Contato contato3 = new Contato(null);
 		contato3.getEmails().addAll(Arrays.asList("maria@gmail.com", "maria@academico.com"));
-		contato3.getTelefones().addAll(Arrays.asList("(83)99543-9800", "(83)988766611"));
+		contato3.getTelefones().addAll(Arrays.asList("(83)99543-9800", "(83)98876-6611"));
 		Endereco endereco4 = new Endereco(null, "Rua dos Sorrisos", "03", "Largo Alto", "Apt 02", "58540-000", c1);
 		
 		Funcionario funcionario1 = new Funcionario(null, "2020332212321", "Maria de Fátma Alves Lira", "435.321.112-98", contato3);
