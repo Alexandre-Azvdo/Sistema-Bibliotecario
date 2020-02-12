@@ -68,43 +68,66 @@ public class BibliotecaApplication implements CommandLineRunner{
 					
 		Livro livro1 = new Livro(null, "Reinações de Narizinho", "Sinopse",	"978-8538090311", "Ciranda Cultural", 
 				"Literatura Infantil", "Português", "288");		
-		Exemplar exemplar0 = new Exemplar(null, "LIVRO-2019-05-21231", true, sdf.parse("08/07/2019 01:00"), 72.50, StatusLivro.DISPONIVEL, "2019", livro1);
-		Exemplar exemplar1 = new Exemplar(null, "LIVRO-2020-01-12345", true, sdf.parse("01/01/2020 01:00"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
-		Exemplar exemplar2 = new Exemplar(null, "LIVRO-2020-01-12346", true, sdf.parse("01/01/2020 01:01"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
-		Exemplar exemplar3 = new Exemplar(null, "LIVRO-2020-01-12347", true, sdf.parse("01/01/2020 01:02"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
-		
-		livro1.getExemplares().addAll(Arrays.asList(exemplar0, exemplar1, exemplar2, exemplar3));		
+		Exemplar exemplar11 = new Exemplar(null, "LIVRO-2019-05-21231", true, sdf.parse("08/07/2019 01:00"), 72.50, StatusLivro.DISPONIVEL, "2019", livro1);
+		Exemplar exemplar12 = new Exemplar(null, "LIVRO-2020-01-12345", true, sdf.parse("01/01/2020 01:00"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
+		Exemplar exemplar13 = new Exemplar(null, "LIVRO-2020-01-12346", true, sdf.parse("01/01/2020 01:01"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
+		Exemplar exemplar14 = new Exemplar(null, "LIVRO-2020-01-12347", true, sdf.parse("01/01/2020 01:02"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
+		livro1.getExemplares().addAll(Arrays.asList(exemplar11, exemplar12, exemplar13, exemplar14));		
 
 		Livro livro2 = new Livro(null, "O saci", "Sinopse", "978-8525062130", "Biblioteca Azul", 
 				"Literatura Juvenil", "Português", "208");
-		Exemplar exemplar10 = new Exemplar(null, "LIVRO-2019-08-23100", true, sdf.parse("08/07/2019 14:00"), 44.75, StatusLivro.INDISPONIVEL, "2018", livro2);
-		Exemplar exemplar11 = new Exemplar(null, "LIVRO-2019-08-23101", true, sdf.parse("08/07/2019 14:03"), 44.75, StatusLivro.INDISPONIVEL, "2018", livro2);
-		Exemplar exemplar12 = new Exemplar(null, "LIVRO-2020-01-12334", true, sdf.parse("02/01/2020 02:00"), 41.75, StatusLivro.INDISPONIVEL, "2019", livro2);
-		Exemplar exemplar13 = new Exemplar(null, "LIVRO-2020-01-12335", true, sdf.parse("02/01/2020 02:02"), 41.75, StatusLivro.INDISPONIVEL, "2019", livro2); 
-				
+		Exemplar exemplar21 = new Exemplar(null, "LIVRO-2019-08-23100", true, sdf.parse("08/07/2019 14:00"), 44.75, StatusLivro.INDISPONIVEL, "2018", livro2);
+		Exemplar exemplar22 = new Exemplar(null, "LIVRO-2019-08-23101", true, sdf.parse("08/07/2019 14:03"), 44.75, StatusLivro.INDISPONIVEL, "2018", livro2);
+		Exemplar exemplar23 = new Exemplar(null, "LIVRO-2020-01-12334", true, sdf.parse("02/01/2020 02:00"), 41.75, StatusLivro.INDISPONIVEL, "2019", livro2);
+		Exemplar exemplar24 = new Exemplar(null, "LIVRO-2020-01-12335", true, sdf.parse("02/01/2020 02:02"), 41.75, StatusLivro.INDISPONIVEL, "2019", livro2); 
+		livro2.getExemplares().addAll(Arrays.asList(exemplar21, exemplar22, exemplar23, exemplar24));
+		
 		Livro livro3 = new Livro(null, "Dom Casmurro", "Sinopse", "857-2322647", "Martin Claret",
-				"Romance Impressionista", "Português", "210");
-		Exemplar exemplar20 = new Exemplar(null, "LIVRO-2020-01-14432", true, sdf.parse("03/01/2020 15:02"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
-		Exemplar exemplar21 = new Exemplar(null, "LIVRO-2020-01-14433", true, sdf.parse("03/01/2020 15:03"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
-		Exemplar exemplar22 = new Exemplar(null, "LIVRO-2020-01-14434", true, sdf.parse("03/01/2020 15:04"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
-				 		
+				"Romance", "Português", "210");
+		Exemplar exemplar31 = new Exemplar(null, "LIVRO-2020-01-14432", true, sdf.parse("03/01/2020 15:02"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
+		Exemplar exemplar32 = new Exemplar(null, "LIVRO-2020-01-14433", true, sdf.parse("03/01/2020 15:03"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
+		Exemplar exemplar33 = new Exemplar(null, "LIVRO-2020-01-14434", true, sdf.parse("03/01/2020 15:04"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
+		livro3.getExemplares().addAll(Arrays.asList(exemplar31, exemplar32, exemplar33));
+		
+		Livro livro4 = new Livro(null, "Memórias Póstumas De Brás Cubas", "Sinopse", "978-8520927809", "Nova Fronteira",
+				"Romance", "Português", "232");
+		Livro livro5 = new Livro(null, "Quincas Borba", "Sinopse", "857-232447X", "Martin Claret",
+				"Romance", "Português", "270");
+		Livro livro6 = new Livro(null, "A Mão e A Luva", "Sinopse", "978-8536815343", "Dcl Difusão Cultural",
+				"Romance", "Português", "64");		
+		Livro livro7 = new Livro(null, "Esaú e Jacó", "Sinopse", "978-8520927359", "Nova Fronteira",
+				"Romance", "Português", "256");
+		Livro livro8 = new Livro(null, "O Alienista / Casa Velha", "Sinopse", "978-8572327503", "Martin Claret",
+				"RomanceRomance", "Português", "156");
+		Livro livro9 = new Livro(null, "Ressurreição", "Sinopse", "978-8572329576", "Martin Claret",
+				"Romance", "Português", "164");
+		Livro livro10 = new Livro(null, "Contos Fluminenses", "Sinopse", "978-8520922187", "Saraiva De Bolso",
+				"Romance", "Português", "216");
+
 		Autor a1 = new Autor(null,"Monteiro Lobato");
 		Autor a2 = new Autor(null,"Machado de Assis");		
 		
 		livro1.getAutores().addAll(Arrays.asList(a1));
 		livro2.getAutores().addAll(Arrays.asList(a1));
 		livro3.getAutores().addAll(Arrays.asList(a2));
+		livro4.getAutores().addAll(Arrays.asList(a2));
+		livro5.getAutores().addAll(Arrays.asList(a2));
+		livro6.getAutores().addAll(Arrays.asList(a2));
+		livro7.getAutores().addAll(Arrays.asList(a2));
+		livro8.getAutores().addAll(Arrays.asList(a2));
+		livro9.getAutores().addAll(Arrays.asList(a2));
+		livro10.getAutores().addAll(Arrays.asList(a2));
 		
 		a1.getLivros().addAll(Arrays.asList(livro1, livro2));
-		a2.getLivros().addAll(Arrays.asList(livro3));
+		a2.getLivros().addAll(Arrays.asList(livro3, livro4, livro5, livro6, livro7, livro8, livro9, livro10));
 		
 		autorRepository.saveAll(Arrays.asList(a1, a2));
-		livroRepository.saveAll(Arrays.asList(livro1, livro2, livro3));
+		livroRepository.saveAll(Arrays.asList(livro1, livro2, livro3, livro3, livro4, livro5, livro6, livro7, livro8, livro9, livro10));
 		exemplarRepository.saveAll(
 				Arrays.asList(
-						exemplar0, exemplar1, exemplar2, exemplar3,
-						exemplar10, exemplar11,exemplar12, exemplar13, 
-						exemplar20, exemplar21, exemplar22
+						exemplar11, exemplar12, exemplar13, exemplar14,
+						exemplar21, exemplar22,exemplar23, exemplar24, 
+						exemplar31, exemplar32, exemplar33
 					)
 				);
 				
@@ -153,14 +176,14 @@ public class BibliotecaApplication implements CommandLineRunner{
 		
 		funcionarioRepository.saveAll(Arrays.asList(funcionario1));
 		
-		Emprestimo emp1 = new Emprestimo(null, sdf.parse("04/02/2020 10:12"), sdf.parse("14/02/2020 08:00"), StatusEmprestimo.EM_ANDAMENTO, leitor1, funcionario1, exemplar1);
-		Emprestimo emp2 = new Emprestimo(null, sdf.parse("05/02/2020 09:30"), sdf.parse("28/02/2020 08:00"), StatusEmprestimo.CONCLUIDO, leitor2, funcionario1, exemplar1);
+		Emprestimo emp1 = new Emprestimo(null, sdf.parse("04/02/2020 10:12"), sdf.parse("14/02/2020 08:00"), StatusEmprestimo.EM_ANDAMENTO, leitor1, funcionario1, exemplar11);
+		Emprestimo emp2 = new Emprestimo(null, sdf.parse("05/02/2020 09:30"), sdf.parse("28/02/2020 08:00"), StatusEmprestimo.CONCLUIDO, leitor2, funcionario1, exemplar11);
 				
 		leitor1.getEmprestimos().addAll(Arrays.asList(emp1));
 		leitor2.getEmprestimos().addAll(Arrays.asList(emp2));
 		funcionario1.getEmprestimos().addAll(Arrays.asList(emp1, emp2));
 		
-		exemplar1.getEmprestimos().addAll(Arrays.asList(emp1, emp2));
+		exemplar11.getEmprestimos().addAll(Arrays.asList(emp1, emp2));
 				
 		emprestimoRepository.saveAll(Arrays.asList(emp1, emp2));
 		

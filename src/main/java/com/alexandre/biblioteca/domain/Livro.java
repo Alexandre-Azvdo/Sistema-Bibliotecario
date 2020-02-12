@@ -33,8 +33,7 @@ public class Livro implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "LIVRO_AUTOR",
 		joinColumns = @JoinColumn(name = "livro_id"),
-		inverseJoinColumns = @JoinColumn(name = "autor_id")
-	)
+		inverseJoinColumns = @JoinColumn(name = "autor_id"))
 	private List<Autor> autores = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "livro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
