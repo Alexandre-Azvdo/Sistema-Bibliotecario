@@ -2,13 +2,21 @@ package com.alexandre.biblioteca.domain.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.alexandre.biblioteca.domain.Livro;
 
 public class LivroDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
+	@Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
 	private String titulo;
+	
 	private String sinopse;
 	private String isbn;
 	private String editora;

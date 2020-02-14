@@ -1,4 +1,4 @@
-package com.alexandre.biblioteca.resourses.exception;
+package com.alexandre.biblioteca.resources.exception;
 
 import java.io.Serializable;
 

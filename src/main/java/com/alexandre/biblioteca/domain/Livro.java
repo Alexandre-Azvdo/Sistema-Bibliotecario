@@ -53,7 +53,7 @@ public class Livro implements Serializable {
 		this.editora = editora;
 		this.genero = genero;
 		this.idioma = idioma;
-		this.numPaginas = numPaginas;
+		this.numPaginas = numPaginas;		
 	}
 
 	public Integer getId() {
@@ -135,7 +135,7 @@ public class Livro implements Serializable {
 	public void setExemplares(List<Exemplar> exemplares) {
 		this.exemplares = exemplares;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

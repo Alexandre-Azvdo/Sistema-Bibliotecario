@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.alexandre.biblioteca.domain.Livro;
+import com.alexandre.biblioteca.domain.dto.LivroDTO;
 import com.alexandre.biblioteca.repositories.LivroRepository;
 import com.alexandre.biblioteca.services.exceptions.DataIntegrityException;
 import com.alexandre.biblioteca.services.exceptions.ObjectNotFoundException;
@@ -55,4 +56,7 @@ public class LivroService {
 		return repo.findAll(pageRequest);
 	}
 	
+	public Livro fromDTO(LivroDTO objDto) {
+		return new Livro(objDto.getId(), objDto.getTitulo(), objDto.getSinopse(), objDto.getIsbn(), objDto.getEditora(), objDto.getGenero(), objDto.getIdioma(), objDto.getNumPaginas());
+	}
 }

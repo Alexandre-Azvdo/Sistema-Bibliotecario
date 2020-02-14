@@ -98,7 +98,7 @@ public class BibliotecaApplication implements CommandLineRunner{
 		Livro livro7 = new Livro(null, "Esaú e Jacó", "Sinopse", "978-8520927359", "Nova Fronteira",
 				"Romance", "Português", "256");
 		Livro livro8 = new Livro(null, "O Alienista / Casa Velha", "Sinopse", "978-8572327503", "Martin Claret",
-				"RomanceRomance", "Português", "156");
+				"Romance", "Português", "156");
 		Livro livro9 = new Livro(null, "Ressurreição", "Sinopse", "978-8572329576", "Martin Claret",
 				"Romance", "Português", "164");
 		Livro livro10 = new Livro(null, "Contos Fluminenses", "Sinopse", "978-8520922187", "Saraiva De Bolso",
