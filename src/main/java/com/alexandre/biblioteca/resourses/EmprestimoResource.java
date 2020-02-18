@@ -50,7 +50,7 @@ public class EmprestimoResource {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Emprestimo> delete(@PathVariable Integer id) {
 		service.delete(id);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
