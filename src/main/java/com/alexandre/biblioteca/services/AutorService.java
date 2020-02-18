@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.alexandre.biblioteca.domain.Autor;
+import com.alexandre.biblioteca.domain.dto.AutorDTO;
 import com.alexandre.biblioteca.repositories.AutorRepository;
 import com.alexandre.biblioteca.services.exceptions.DataIntegrityException;
 import com.alexandre.biblioteca.services.exceptions.ObjectNotFoundException;
@@ -54,4 +55,9 @@ public class AutorService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+	
+	public Autor fromDTO(AutorDTO objDto) {
+		return new Autor(objDto.getId(), objDto.getNome());
+	}
+	
 }
