@@ -9,9 +9,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.alexandre.biblioteca.domain.Exemplar;
 import com.alexandre.biblioteca.domain.Livro;
 import com.alexandre.biblioteca.domain.dto.LivroDTO;
+import com.alexandre.biblioteca.domain.dto.LivroNewDTO;
+import com.alexandre.biblioteca.domain.enums.StatusLivro;
+import com.alexandre.biblioteca.repositories.ExemplarRepository;
 import com.alexandre.biblioteca.repositories.LivroRepository;
 import com.alexandre.biblioteca.services.exceptions.DataIntegrityException;
 import com.alexandre.biblioteca.services.exceptions.ObjectNotFoundException;
@@ -21,6 +26,8 @@ public class LivroService {
 	
 	@Autowired
 	private LivroRepository repo;
+	@Autowired
+	private ExemplarRepository exemplarRepository;
 
 	public Livro findById(Integer id) {
 		Optional<Livro> obj = repo.findById(id);
@@ -28,14 +35,18 @@ public class LivroService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Livro.class.getName()));
 	}
 	
+	@Transactional
 	public Livro insert(Livro obj) {
 		obj.setId(null);
-		return repo.save(obj);
+		obj = repo.save(obj);
+		exemplarRepository.saveAll(obj.getExemplares());
+		return obj;
 	}
 	
 	public Livro update(Livro obj) {
-		findById(obj.getId());
-		return repo.save(obj);
+		Livro newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
@@ -58,5 +69,17 @@ public class LivroService {
 	
 	public Livro fromDTO(LivroDTO objDto) {
 		return new Livro(objDto.getId(), objDto.getTitulo(), objDto.getSinopse(), objDto.getIsbn(), objDto.getEditora(), objDto.getGenero(), objDto.getIdioma(), objDto.getNumPaginas());
+	}
+	
+	public Livro fromDTO(LivroNewDTO objDto) {
+		Livro livro =  new Livro(null, objDto.getTitulo(), objDto.getSinopse(), objDto.getIsbn(), objDto.getEditora(), objDto.getGenero(), objDto.getIdioma(), objDto.getNumPaginas());
+		Exemplar exemplar = new Exemplar(null, objDto.getIdentificador(), objDto.getQr_code(), objDto.getData_aquisicao(), objDto.getPreco_unitario(), StatusLivro.toEnum(objDto.getStatus()), objDto.getEdicao(), livro);
+		livro.getExemplares().add(exemplar);
+		
+		return livro;
+	}
+	
+	public void updateData(Livro newObj, Livro obj) {
+		newObj.setTitulo(obj.getTitulo());
 	}
 }

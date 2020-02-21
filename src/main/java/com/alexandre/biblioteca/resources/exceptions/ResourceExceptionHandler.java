@@ -1,4 +1,4 @@
-package com.alexandre.biblioteca.resources.exception;
+package com.alexandre.biblioteca.resources.exceptions;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.alexandre.biblioteca.resources.exceptions.StandardError;
+import com.alexandre.biblioteca.resources.exceptions.ValidationError;
 import com.alexandre.biblioteca.services.exceptions.DataIntegrityException;
 import com.alexandre.biblioteca.services.exceptions.ObjectNotFoundException;
-import com.alexandre.biblioteca.resources.exception.StandardError;
-import com.alexandre.biblioteca.resources.exception.ValidationError;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {

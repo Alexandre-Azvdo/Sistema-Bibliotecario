@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.alexandre.biblioteca.domain.Livro;
 import com.alexandre.biblioteca.domain.dto.LivroDTO;
+import com.alexandre.biblioteca.domain.dto.LivroNewDTO;
 import com.alexandre.biblioteca.services.LivroService;
 
 @RestController
@@ -35,7 +36,7 @@ public class LivroResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody LivroDTO objDto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody LivroNewDTO objDto){
 		Livro obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

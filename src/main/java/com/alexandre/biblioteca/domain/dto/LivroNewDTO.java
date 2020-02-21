@@ -1,18 +1,15 @@
 package com.alexandre.biblioteca.domain.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.alexandre.biblioteca.domain.Livro;
-
-public class LivroDTO implements Serializable{
+public class LivroNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;	
-	
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
 	private String titulo;	
@@ -23,28 +20,15 @@ public class LivroDTO implements Serializable{
 	private String idioma;
 	private String numPaginas;
 	
-	public LivroDTO() {
+	private String identificador;
+	private Boolean qr_code;
+	private Date data_aquisicao;
+	private Double preco_unitario;
+	private Integer status;
+	private String edicao;
+	
+	public LivroNewDTO() {
 		
-	}
-
-	public LivroDTO(Livro livro) {
-		super();
-		this.id = livro.getId();
-		this.titulo = livro.getTitulo();
-		this.sinopse = livro.getSinopse();
-		this.isbn = livro.getIsbn();
-		this.editora = livro.getEditora();
-		this.genero = livro.getGenero();
-		this.idioma = livro.getIdioma();
-		this.numPaginas = livro.getNumPaginas();
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getTitulo() {
@@ -101,6 +85,54 @@ public class LivroDTO implements Serializable{
 
 	public void setNumPaginas(String numPaginas) {
 		this.numPaginas = numPaginas;
+	}
+
+	public String getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+	}
+
+	public Boolean getQr_code() {
+		return qr_code;
+	}
+
+	public void setQr_code(Boolean qr_code) {
+		this.qr_code = qr_code;
+	}
+
+	public Date getData_aquisicao() {
+		return data_aquisicao;
+	}
+
+	public void setData_aquisicao(Date data_aquisicao) {
+		this.data_aquisicao = data_aquisicao;
+	}
+
+	public Double getPreco_unitario() {
+		return preco_unitario;
+	}
+
+	public void setPreco_unitario(Double preco_unitario) {
+		this.preco_unitario = preco_unitario;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getEdicao() {
+		return edicao;
+	}
+
+	public void setEdicao(String edicao) {
+		this.edicao = edicao;
 	}
 		
 }

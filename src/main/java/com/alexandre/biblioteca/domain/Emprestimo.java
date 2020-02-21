@@ -56,7 +56,7 @@ public class Emprestimo implements Serializable {
 		this.id = id;
 		this.data_inicial = data_inicial;
 		this.data_entrega = data_entrega;
-		this.status = status.getCod();
+		this.status = (status == null) ? null : status.getCod();
 		this.funcionario = funcionario;
 		this.leitor = leitor;
 		this.exemplar = exemplar;

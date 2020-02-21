@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.alexandre.biblioteca.domain.enums.StatusLivro;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -26,10 +25,8 @@ public class Exemplar implements Serializable {
 	private Integer id;
 	private String identificador;
 	private Boolean qr_code;
-	
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date data_aquisicao;
-	private Double preco_unitario;
+	private Date data_aquisicao;	
+	private Double preco_unitario;	
 	private Integer status;
 	private String edicao;
 	
@@ -53,7 +50,7 @@ public class Exemplar implements Serializable {
 		this.qr_code = qr_code;
 		this.data_aquisicao = data_aquisicao;
 		this.preco_unitario = preco_unitario;
-		this.status = status.getCod();
+		this.status = (status == null) ? null : status.getCod();
 		this.edicao = edicao;
 		this.livro = livro;
 	}

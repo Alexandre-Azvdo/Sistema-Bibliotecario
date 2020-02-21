@@ -1,4 +1,4 @@
-package com.alexandre.biblioteca.resources.exception;
+package com.alexandre.biblioteca.resources.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

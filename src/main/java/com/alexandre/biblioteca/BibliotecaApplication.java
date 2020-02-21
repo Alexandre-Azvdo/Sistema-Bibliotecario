@@ -66,42 +66,42 @@ public class BibliotecaApplication implements CommandLineRunner{
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 					
-		Livro livro1 = new Livro(null, "Reinações de Narizinho", "Sinopse",	"978-8538090311", "Ciranda Cultural", 
+		Livro livro1 = new Livro(null, "Reinações de Narizinho", "Sinopse",	"978-85-3809-031-1", "Ciranda Cultural", 
 				"Literatura Infantil", "Português", "288");		
-		Exemplar exemplar11 = new Exemplar(null, "LIVRO-2019-05-21231", true, sdf.parse("08/07/2019 01:00"), 72.50, StatusLivro.DISPONIVEL, "2019", livro1);
-		Exemplar exemplar12 = new Exemplar(null, "LIVRO-2020-01-12345", true, sdf.parse("01/01/2020 01:00"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
-		Exemplar exemplar13 = new Exemplar(null, "LIVRO-2020-01-12346", true, sdf.parse("01/01/2020 01:01"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
-		Exemplar exemplar14 = new Exemplar(null, "LIVRO-2020-01-12347", true, sdf.parse("01/01/2020 01:02"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
+		Exemplar exemplar11 = new Exemplar(null, "EXEMPLAR-2019-05-21-1315", true, sdf.parse("08/07/2019 01:00"), 72.50, StatusLivro.DISPONIVEL, "2019", livro1);
+		Exemplar exemplar12 = new Exemplar(null, "EXEMPLAR-2020-01-12-1456", true, sdf.parse("01/01/2020 01:00"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
+		Exemplar exemplar13 = new Exemplar(null, "EXEMPLAR-2020-01-12-1467", true, sdf.parse("01/01/2020 01:01"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
+		Exemplar exemplar14 = new Exemplar(null, "EXEMPLAR-2020-01-12-1478", true, sdf.parse("01/01/2020 01:02"), 80.50, StatusLivro.DISPONIVEL, "2020", livro1);
 		livro1.getExemplares().addAll(Arrays.asList(exemplar11, exemplar12, exemplar13, exemplar14));		
 
-		Livro livro2 = new Livro(null, "O saci", "Sinopse", "978-8525062130", "Biblioteca Azul", 
+		Livro livro2 = new Livro(null, "O saci", "Sinopse", "978-85-2506-213-0", "Biblioteca Azul", 
 				"Literatura Juvenil", "Português", "208");
-		Exemplar exemplar21 = new Exemplar(null, "LIVRO-2019-08-23100", true, sdf.parse("08/07/2019 14:00"), 44.75, StatusLivro.INDISPONIVEL, "2018", livro2);
-		Exemplar exemplar22 = new Exemplar(null, "LIVRO-2019-08-23101", true, sdf.parse("08/07/2019 14:03"), 44.75, StatusLivro.INDISPONIVEL, "2018", livro2);
-		Exemplar exemplar23 = new Exemplar(null, "LIVRO-2020-01-12334", true, sdf.parse("02/01/2020 02:00"), 41.75, StatusLivro.INDISPONIVEL, "2019", livro2);
-		Exemplar exemplar24 = new Exemplar(null, "LIVRO-2020-01-12335", true, sdf.parse("02/01/2020 02:02"), 41.75, StatusLivro.INDISPONIVEL, "2019", livro2); 
+		Exemplar exemplar21 = new Exemplar(null, "EXEMPLAR-2019-08-23-1000", true, sdf.parse("08/07/2019 14:00"), 44.75, StatusLivro.INDISPONIVEL, "2018", livro2);
+		Exemplar exemplar22 = new Exemplar(null, "EXEMPLAR-2019-08-23-1014", true, sdf.parse("08/07/2019 14:03"), 44.75, StatusLivro.INDISPONIVEL, "2018", livro2);
+		Exemplar exemplar23 = new Exemplar(null, "EXEMPLAR-2020-01-12-1345", true, sdf.parse("02/01/2020 02:00"), 41.75, StatusLivro.INDISPONIVEL, "2019", livro2);
+		Exemplar exemplar24 = new Exemplar(null, "EXEMPLAR-2020-01-12-1354", true, sdf.parse("02/01/2020 02:02"), 41.75, StatusLivro.INDISPONIVEL, "2019", livro2); 
 		livro2.getExemplares().addAll(Arrays.asList(exemplar21, exemplar22, exemplar23, exemplar24));
 		
-		Livro livro3 = new Livro(null, "Dom Casmurro", "Sinopse", "857-2322647", "Martin Claret",
+		Livro livro3 = new Livro(null, "Dom Casmurro", "Sinopse", "978-85-7232-264-7", "Martin Claret",
 				"Romance", "Português", "210");
-		Exemplar exemplar31 = new Exemplar(null, "LIVRO-2020-01-14432", true, sdf.parse("03/01/2020 15:02"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
-		Exemplar exemplar32 = new Exemplar(null, "LIVRO-2020-01-14433", true, sdf.parse("03/01/2020 15:03"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
-		Exemplar exemplar33 = new Exemplar(null, "LIVRO-2020-01-14434", true, sdf.parse("03/01/2020 15:04"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
+		Exemplar exemplar31 = new Exemplar(null, "EXEMPLAR-2020-01-14-1320", true, sdf.parse("03/01/2020 15:02"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
+		Exemplar exemplar32 = new Exemplar(null, "EXEMPLAR-2020-01-14-1330", true, sdf.parse("03/01/2020 15:03"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
+		Exemplar exemplar33 = new Exemplar(null, "EXEMPLAR-2020-01-14-1340", true, sdf.parse("03/01/2020 15:04"), 39.45, StatusLivro.RESERVADO, "2020", livro3);
 		livro3.getExemplares().addAll(Arrays.asList(exemplar31, exemplar32, exemplar33));
 		
-		Livro livro4 = new Livro(null, "Memórias Póstumas De Brás Cubas", "Sinopse", "978-8520927809", "Nova Fronteira",
+		Livro livro4 = new Livro(null, "Memórias Póstumas De Brás Cubas", "Sinopse", "978-85-2092-780-9", "Nova Fronteira",
 				"Romance", "Português", "232");
-		Livro livro5 = new Livro(null, "Quincas Borba", "Sinopse", "857-232447X", "Martin Claret",
+		Livro livro5 = new Livro(null, "Quincas Borba", "Sinopse", "978-85-7232-447-X", "Martin Claret",
 				"Romance", "Português", "270");
-		Livro livro6 = new Livro(null, "A Mão e A Luva", "Sinopse", "978-8536815343", "Dcl Difusão Cultural",
+		Livro livro6 = new Livro(null, "A Mão e A Luva", "Sinopse", "978-85-3681-534-3", "Dcl Difusão Cultural",
 				"Romance", "Português", "64");		
-		Livro livro7 = new Livro(null, "Esaú e Jacó", "Sinopse", "978-8520927359", "Nova Fronteira",
+		Livro livro7 = new Livro(null, "Esaú e Jacó", "Sinopse", "978-85-2092-735-9", "Nova Fronteira",
 				"Romance", "Português", "256");
-		Livro livro8 = new Livro(null, "O Alienista / Casa Velha", "Sinopse", "978-8572327503", "Martin Claret",
+		Livro livro8 = new Livro(null, "O Alienista / Casa Velha", "Sinopse", "978-85-7232-750-3", "Martin Claret",
 				"Romance", "Português", "156");
-		Livro livro9 = new Livro(null, "Ressurreição", "Sinopse", "978-8572329576", "Martin Claret",
+		Livro livro9 = new Livro(null, "Ressurreição", "Sinopse", "978-85-7232-957-6", "Martin Claret",
 				"Romance", "Português", "164");
-		Livro livro10 = new Livro(null, "Contos Fluminenses", "Sinopse", "978-8520922187", "Saraiva De Bolso",
+		Livro livro10 = new Livro(null, "Contos Fluminenses", "Sinopse", "978-85-2092-218-7", "Saraiva De Bolso",
 				"Romance", "Português", "216");
 
 		Autor a1 = new Autor(null,"Monteiro Lobato");

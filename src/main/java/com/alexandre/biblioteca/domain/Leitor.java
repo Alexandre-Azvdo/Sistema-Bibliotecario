@@ -57,7 +57,7 @@ public class Leitor implements Serializable {
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
-		this.status = status.getCod();
+		this.status = (status == null) ? null : status.getCod();
 		this.contato = contato;
 	}
 
