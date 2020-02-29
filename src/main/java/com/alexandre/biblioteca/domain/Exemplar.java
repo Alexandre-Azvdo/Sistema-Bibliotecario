@@ -12,8 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.alexandre.biblioteca.domain.enums.StatusLivro;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,8 +28,11 @@ public class Exemplar implements Serializable {
 	private Integer id;
 	private String identificador;
 	private Boolean qr_code;
-	private Date data_aquisicao;	
-	private Double preco_unitario;	
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private Date data_aquisicao;
+	private Double preco_unitario;
 	private Integer status;
 	private String edicao;
 	

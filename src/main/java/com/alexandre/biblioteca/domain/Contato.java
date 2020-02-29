@@ -36,6 +36,13 @@ public class Contato implements Serializable {
 		this.id = id;
 	}
 
+	public Contato(Integer id, Set<String> emails, Set<String> telefones) {
+		super();
+		this.id = id;
+		this.emails = emails;
+		this.telefones = telefones;
+	}
+
 	public Integer getId() {
 		return id;
 	}

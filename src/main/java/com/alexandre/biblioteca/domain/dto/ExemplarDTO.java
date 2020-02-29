@@ -6,10 +6,10 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.alexandre.biblioteca.domain.Exemplar;
-import com.alexandre.biblioteca.domain.util.CustomerDateAndTimeDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 public class ExemplarDTO implements Serializable {
@@ -22,16 +22,21 @@ public class ExemplarDTO implements Serializable {
 	
 	private Boolean qr_code;
 	
-	@JsonDeserialize(using = CustomerDateAndTimeDeserialize.class)
+	@NotNull(message = "O campo Data de Aquisição NÃO pode ser nulo")
 	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date data_aquisicao;
 	
-	private Double preco_unitario;	
+	@NotNull(message = "O campo Preço unitário NÃO pode ser nulo")
+	private Double preco_unitario;
 	
 	private Integer status;
-	
+
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String edicao;
+	
+	@NotNull(message = "Preenchimento obrigatório!")
+	private Integer livroId;
 	
 	public ExemplarDTO() {
 
@@ -46,6 +51,7 @@ public class ExemplarDTO implements Serializable {
 		this.preco_unitario = exemplar.getPreco_unitario();
 		this.status = exemplar.getStatus().getCod();
 		this.edicao = exemplar.getEdicao();
+		this.livroId = exemplar.getLivro().getId();
 	}
 
 	public Integer getId() {
@@ -90,5 +96,11 @@ public class ExemplarDTO implements Serializable {
 	public void setEdicao(String edicao) {
 		this.edicao = edicao;
 	}
+	public Integer getLivroId() {
+		return livroId;
+	}
+	public void setLivroId(Integer livroId) {
+		this.livroId = livroId;
+	}	
 
 }

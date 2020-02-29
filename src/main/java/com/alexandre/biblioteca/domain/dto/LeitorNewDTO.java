@@ -5,24 +5,46 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 
 public class LeitorNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@NotEmpty(message = "Preenchimento obrigatório!")
+	@Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
 	private String nome;	
+
+	@NotNull(message = "O campo Data de de Nascimento NÃO pode ser nulo")
 	private Date dataNascimento;
-	private String cpf;	
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
+	@Length(min = 11, max = 14, message = "O tamanho deve ser exatamente 11 caracteres númericos")
+	private String cpf;
+	
 	private Integer status;
 
 	private Set<String> emails = new HashSet<>();	
 	private Set<String> telefones = new HashSet<>();
 	
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String logradouro;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String numero;
+	
 	private String complemento;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String bairro;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String cep;
 	
+	@NotNull(message = "Preenchimento obrigatório!")
 	private Integer cidadeId;
 	
 	public LeitorNewDTO() {

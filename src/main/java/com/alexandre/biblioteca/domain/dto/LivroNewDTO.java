@@ -3,9 +3,14 @@ package com.alexandre.biblioteca.domain.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class LivroNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -13,18 +18,40 @@ public class LivroNewDTO implements Serializable{
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
 	private String titulo;	
+	
 	private String sinopse;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
+	@Length(min = 17, max = 17, message = "O tamanho deve ser de 17 caracteres no formato XXX-XX-XXXX-XXX-X")
 	private String isbn;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String editora;
+	
 	private String genero;
+
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String idioma;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String numPaginas;
 	
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String identificador;
+	
 	private Boolean qr_code;
+	
+	@NotNull(message = "O campo Data de Aquisição NÃO pode ser nulo")
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date data_aquisicao;
+	
+	@NotNull(message = "O campo Preço unitário NÃO pode ser nulo")
 	private Double preco_unitario;
+	
 	private Integer status;
+
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String edicao;
 	
 	public LivroNewDTO() {

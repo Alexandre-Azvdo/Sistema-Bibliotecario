@@ -22,10 +22,10 @@ public class Livro implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String titulo;
+	private String titulo;	
 	private String sinopse;
 	private String isbn;
-	private String editora;
+	private String editora;	
 	private String genero;
 	private String idioma;
 	private String numPaginas;

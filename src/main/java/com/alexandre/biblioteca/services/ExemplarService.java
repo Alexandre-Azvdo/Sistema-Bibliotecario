@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.alexandre.biblioteca.domain.Exemplar;
+import com.alexandre.biblioteca.domain.Livro;
 import com.alexandre.biblioteca.domain.dto.ExemplarDTO;
 import com.alexandre.biblioteca.domain.enums.StatusLivro;
 import com.alexandre.biblioteca.repositories.ExemplarRepository;
@@ -22,7 +23,7 @@ public class ExemplarService {
 	
 	@Autowired
 	private ExemplarRepository repo;
-
+	
 	public Exemplar findById(Integer id) {
 		Optional<Exemplar> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -30,7 +31,7 @@ public class ExemplarService {
 	}
 	
 	public Exemplar insert(Exemplar obj) {
-		obj.setId(null);
+		obj.setId(null);		
 		return repo.save(obj);
 	}
 	
@@ -58,8 +59,9 @@ public class ExemplarService {
 	}
 
 	public Exemplar fromDto(ExemplarDTO objDto) {
+		Livro livro = new Livro(objDto.getLivroId(), null, null, null, null, null, null, null);
 		return new Exemplar(objDto.getId(), objDto.getIdentificador(), objDto.getQr_code(), objDto.getData_aquisicao(),
-				objDto.getPreco_unitario(), StatusLivro.toEnum(objDto.getStatus()), objDto.getEdicao(), null);
+				objDto.getPreco_unitario(), StatusLivro.toEnum(objDto.getStatus()), objDto.getEdicao(), livro);
 	}
 	
 }

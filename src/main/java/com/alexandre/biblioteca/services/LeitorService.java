@@ -74,21 +74,19 @@ public class LeitorService {
 	}
 	
 	public Leitor fromDTO(LeitorDTO objDto) {
-		return new Leitor(objDto.getId(), objDto.getNome(), objDto.getDataNascimento(), objDto.getCpf(), StatusLeitor.toEnum(objDto.getStatus()), null);
+		Contato contato = new Contato(null, objDto.getEmails(), objDto.getTelefones());
+		return new Leitor(objDto.getId(), objDto.getNome(), objDto.getDataNascimento(), objDto.getCpf(), StatusLeitor.toEnum(objDto.getStatus()), contato);
 	}
 	
 	public Leitor fromDTO(LeitorNewDTO objDto) {
 		
-		Contato con = new Contato(null);
-		con.getEmails().addAll(objDto.getEmails());
-		con.getTelefones().addAll(objDto.getTelefones());
+		Contato contato = new Contato(null, objDto.getEmails(), objDto.getTelefones());		
+		Leitor leitor =  new Leitor(null, objDto.getNome(), objDto.getDataNascimento(), objDto.getCpf(), StatusLeitor.toEnum(objDto.getStatus()), contato);
 		
-		Leitor leitor =  new Leitor(null, objDto.getNome(), objDto.getDataNascimento(), objDto.getCpf(), StatusLeitor.toEnum(objDto.getStatus()), con);
+		Cidade cidade  = new Cidade(objDto.getCidadeId(),null, null);
+		Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getBairro(), objDto.getComplemento(), objDto.getCep(), cidade);
 		
-		Cidade cid  = new Cidade(objDto.getCidadeId(),null, null);
-		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getBairro(), objDto.getComplemento(), objDto.getCep(), cid);
-		
-		leitor.getEnderecos().add(end);
+		leitor.getEnderecos().add(endereco);
 
 		return leitor;
 	}

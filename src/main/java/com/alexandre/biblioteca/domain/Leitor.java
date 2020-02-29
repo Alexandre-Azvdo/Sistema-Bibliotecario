@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.alexandre.biblioteca.domain.enums.StatusLeitor;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -28,6 +30,7 @@ public class Leitor implements Serializable {
 	private Integer id;
 	private String nome;
 	
+	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 	private String cpf;

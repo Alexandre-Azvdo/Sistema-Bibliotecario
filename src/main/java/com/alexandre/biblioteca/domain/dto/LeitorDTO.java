@@ -2,8 +2,13 @@ package com.alexandre.biblioteca.domain.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -19,6 +24,8 @@ public class LeitorDTO implements Serializable{
 	@Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
 	private String nome;	
 	
+	@NotNull(message = "O campo Data de de Nascimento NÃO pode ser nulo")
+	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 	
@@ -28,6 +35,9 @@ public class LeitorDTO implements Serializable{
 	
 	private Integer status;
 	
+	private Set<String> emails = new HashSet<>();	
+	private Set<String> telefones = new HashSet<>();
+	
 	public LeitorDTO(Leitor leitor) {
 		super();
 		this.id = leitor.getId();
@@ -35,6 +45,8 @@ public class LeitorDTO implements Serializable{
 		this.dataNascimento = leitor.getDataNascimento();
 		this.cpf = leitor.getCpf();
 		this.status = leitor.getStatus().getCod();
+		this.emails.addAll(leitor.getContato().getEmails());
+		this.telefones.addAll(leitor.getContato().getTelefones());
 	}
 
 	public Integer getId() {
@@ -75,6 +87,22 @@ public class LeitorDTO implements Serializable{
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Set<String> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(Set<String> emails) {
+		this.emails = emails;
+	}
+
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
 	}
 
 }

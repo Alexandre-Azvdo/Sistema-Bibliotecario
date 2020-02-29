@@ -16,11 +16,22 @@ public class LivroDTO implements Serializable{
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
 	private String titulo;	
+	
 	private String sinopse;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
+	@Length(min = 17, max = 17, message = "O tamanho deve ser de 17 caracteres no formato XXX-XX-XXXX-XXX-X")
 	private String isbn;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String editora;
+	
 	private String genero;
+
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String idioma;
+	
+	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String numPaginas;
 	
 	public LivroDTO() {
