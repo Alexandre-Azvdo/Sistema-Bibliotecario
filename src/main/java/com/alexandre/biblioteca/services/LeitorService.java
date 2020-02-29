@@ -75,11 +75,10 @@ public class LeitorService {
 	
 	public Leitor fromDTO(LeitorDTO objDto) {
 		Contato contato = new Contato(null, objDto.getEmails(), objDto.getTelefones());
-		return new Leitor(objDto.getId(), objDto.getNome(), objDto.getDataNascimento(), objDto.getCpf(), StatusLeitor.toEnum(objDto.getStatus()), contato);
+		return new Leitor(objDto.getId(), objDto.getNome(), objDto.getDataNascimento(), null, StatusLeitor.toEnum(objDto.getStatus()), contato);
 	}
 	
 	public Leitor fromDTO(LeitorNewDTO objDto) {
-		
 		Contato contato = new Contato(null, objDto.getEmails(), objDto.getTelefones());		
 		Leitor leitor =  new Leitor(null, objDto.getNome(), objDto.getDataNascimento(), objDto.getCpf(), StatusLeitor.toEnum(objDto.getStatus()), contato);
 		
@@ -91,9 +90,12 @@ public class LeitorService {
 		return leitor;
 	}
 	
-	public void updateData(Leitor newObj, Leitor obj) {
-		newObj.setNome(obj.getNome());
-		newObj.setCpf(obj.getCpf());
+	private void updateData(Leitor newObj, Leitor obj) {
+		newObj.setNome(obj.getNome());		
+		newObj.setDataNascimento(obj.getDataNascimento());
+		newObj.setStatus(obj.getStatus());
+		newObj.getContato().setEmails(obj.getContato().getEmails());
+		newObj.getContato().setTelefones(obj.getContato().getTelefones());
 	}
 
 }

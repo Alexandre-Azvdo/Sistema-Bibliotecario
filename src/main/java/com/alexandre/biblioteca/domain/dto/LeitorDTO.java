@@ -29,21 +29,19 @@ public class LeitorDTO implements Serializable{
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 	
-	@NotEmpty(message = "Preenchimento obrigatório!")
-	@Length(min = 11, max = 14, message = "O tamanho deve ser exatamente 11 caracteres númericos")
-	private String cpf;
-	
 	private Integer status;
 	
 	private Set<String> emails = new HashSet<>();	
 	private Set<String> telefones = new HashSet<>();
 	
+	public LeitorDTO() {
+
+	}
+	
 	public LeitorDTO(Leitor leitor) {
-		super();
 		this.id = leitor.getId();
 		this.nome = leitor.getNome();
 		this.dataNascimento = leitor.getDataNascimento();
-		this.cpf = leitor.getCpf();
 		this.status = leitor.getStatus().getCod();
 		this.emails.addAll(leitor.getContato().getEmails());
 		this.telefones.addAll(leitor.getContato().getTelefones());
@@ -71,14 +69,6 @@ public class LeitorDTO implements Serializable{
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public Integer getStatus() {
