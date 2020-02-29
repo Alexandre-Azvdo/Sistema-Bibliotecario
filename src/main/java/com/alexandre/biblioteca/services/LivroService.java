@@ -79,7 +79,13 @@ public class LivroService {
 		return livro;
 	}
 	
-	public void updateData(Livro newObj, Livro obj) {
+	private void updateData(Livro newObj, Livro obj) {
 		newObj.setTitulo(obj.getTitulo());
+		newObj.setSinopse(obj.getSinopse());
+		newObj.setIsbn(obj.getIsbn());
+		newObj.setEditora(obj.getEditora());
+		newObj.setGenero(obj.getGenero());
+		newObj.setIdioma(obj.getIdioma());
+		newObj.setNumPaginas(obj.getNumPaginas());
 	}
 }

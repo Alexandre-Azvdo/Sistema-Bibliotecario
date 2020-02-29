@@ -36,10 +36,11 @@ public class ExemplarService {
 	}
 	
 	public Exemplar update(Exemplar obj) {
-		findById(obj.getId());
-		return repo.save(obj);
+		Exemplar  newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
-	
+
 	public void delete(Integer id) {
 		findById(id);
 		try {
@@ -62,6 +63,16 @@ public class ExemplarService {
 		Livro livro = new Livro(objDto.getLivroId(), null, null, null, null, null, null, null);
 		return new Exemplar(objDto.getId(), objDto.getIdentificador(), objDto.getQr_code(), objDto.getData_aquisicao(),
 				objDto.getPreco_unitario(), StatusLivro.toEnum(objDto.getStatus()), objDto.getEdicao(), livro);
+	}
+	
+	private void updateData(Exemplar newObj, Exemplar obj) {
+		newObj.setIdentificador(obj.getIdentificador());
+		newObj.setQr_code(obj.getQr_code());
+		newObj.setData_aquisicao(obj.getData_aquisicao());
+		newObj.setPreco_unitario(obj.getPreco_unitario());
+		newObj.setStatus(obj.getStatus());
+		newObj.setEdicao(obj.getEdicao());
+		
 	}
 	
 }
