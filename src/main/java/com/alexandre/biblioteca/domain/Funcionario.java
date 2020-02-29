@@ -2,9 +2,13 @@ package com.alexandre.biblioteca.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,9 +30,11 @@ public class Funcionario implements Serializable {
 	private String nome;
 	private String cpf;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "contato_id")
-	private Contato contato;
+	private String email;
+	
+	@ElementCollection
+	@CollectionTable(name = "TELEFONE_FUNCIONARIO")
+	private Set<String> telefones = new HashSet<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
@@ -42,13 +48,13 @@ public class Funcionario implements Serializable {
 		
 	}
 
-	public Funcionario(Integer id, String matricula, String nome, String cpf, Contato contato) {
+	public Funcionario(Integer id, String matricula, String nome, String cpf, String email) {
 		super();
 		this.id = id;
 		this.matricula = matricula;
 		this.nome = nome;
 		this.cpf = cpf;
-		this.contato = contato;
+		this.email = email;
 	}
 
 	public Integer getId() {
@@ -81,14 +87,22 @@ public class Funcionario implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}	
+
+	public String getEmail() {
+		return email;
 	}
 
-	public Contato getContato() {
-		return contato;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setContato(Contato contato) {
-		this.contato = contato;
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
 	}
 
 	public Endereco getEndereco() {
