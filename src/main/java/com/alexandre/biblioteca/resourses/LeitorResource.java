@@ -2,7 +2,6 @@ package com.alexandre.biblioteca.resourses;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -59,10 +58,10 @@ public class LeitorResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<LeitorDTO>> findAll() {	
+	public ResponseEntity<List<Leitor>> findAll() {	
 		List<Leitor> list = service.findAll();	
-		List<LeitorDTO> listDto = list.stream().map(obj -> new LeitorDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDto);
+//		List<LeitorDTO> listDto = list.stream().map(obj -> new LeitorDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(list);
 	}
 	
 	@RequestMapping(value = "/page", method=RequestMethod.GET)

@@ -15,6 +15,7 @@ import com.alexandre.biblioteca.domain.Cidade;
 import com.alexandre.biblioteca.domain.Endereco;
 import com.alexandre.biblioteca.domain.Funcionario;
 import com.alexandre.biblioteca.domain.dto.FuncionarioDTO;
+import com.alexandre.biblioteca.domain.dto.FuncionarioNewDTO;
 import com.alexandre.biblioteca.repositories.EnderecoRepository;
 import com.alexandre.biblioteca.repositories.FuncionarioRepository;
 import com.alexandre.biblioteca.services.exceptions.DataIntegrityException;
@@ -65,15 +66,24 @@ public class FuncionarioService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}	
-		
+	
 	public Funcionario fromDTO(FuncionarioDTO objDto) {			
 		Funcionario funcionario = new Funcionario(objDto.getId(), objDto.getMatricula(),objDto.getNome(), null, objDto.getEmail());
 		
 		Cidade cidade  = new Cidade(objDto.getCidadeId(),null, null);
 		Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getBairro(), objDto.getComplemento(), objDto.getCep(), cidade);
-		
 		funcionario.setEndereco(endereco);
 
+		return funcionario;
+	}
+	
+	public Funcionario fromDTO(FuncionarioNewDTO objDto) {			
+		Funcionario funcionario = new Funcionario(null, objDto.getMatricula(),objDto.getNome(), objDto.getCpf(), objDto.getEmail());
+		funcionario.getTelefones().addAll(objDto.getTelefones());
+		Cidade cidade  = new Cidade(objDto.getCidadeId(),null, null);
+		Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getBairro(), objDto.getComplemento(), objDto.getCep(), cidade);
+		funcionario.setEndereco(endereco);
+		
 		return funcionario;
 	}
 	

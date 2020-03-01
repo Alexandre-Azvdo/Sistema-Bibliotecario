@@ -2,7 +2,6 @@ package com.alexandre.biblioteca.resourses;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -19,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.alexandre.biblioteca.domain.Funcionario;
 import com.alexandre.biblioteca.domain.dto.FuncionarioDTO;
+import com.alexandre.biblioteca.domain.dto.FuncionarioNewDTO;
 import com.alexandre.biblioteca.services.FuncionarioService;
 
 @RestController
@@ -35,7 +35,7 @@ public class FuncionarioResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody FuncionarioDTO objDto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody FuncionarioNewDTO objDto){
 		Funcionario obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -58,10 +58,9 @@ public class FuncionarioResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<FuncionarioDTO>> findAll() {	
+	public ResponseEntity<List<Funcionario>> findAll() {	
 		List<Funcionario> list = service.findAll();	
-		List<FuncionarioDTO> listDto = list.stream().map(obj -> new FuncionarioDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDto);
+		return ResponseEntity.ok().body(list);
 	}
 	
 	@RequestMapping(value = "/page", method=RequestMethod.GET)

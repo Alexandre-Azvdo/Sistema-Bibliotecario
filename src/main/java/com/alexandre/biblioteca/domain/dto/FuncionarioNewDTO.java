@@ -1,6 +1,8 @@
 package com.alexandre.biblioteca.domain.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -8,12 +10,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.alexandre.biblioteca.domain.Funcionario;
-
-public class FuncionarioDTO implements Serializable {
+public class FuncionarioNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	private Integer id;
 	
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
@@ -23,9 +21,15 @@ public class FuncionarioDTO implements Serializable {
 	@Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
 	private String nome;
 	
+	@NotEmpty(message = "Preenchimento obrigatório!")
+	@Length(min = 11, max = 14, message = "O tamanho deve ser exatamente 11 caracteres númericos")
+	private String cpf;
+	
 	@Email
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String email;
+	
+	private Set<String> telefones = new HashSet<>();
 	
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String logradouro;
@@ -44,30 +48,8 @@ public class FuncionarioDTO implements Serializable {
 	@NotNull(message = "Preenchimento obrigatório!")
 	private Integer cidadeId;
 
-	public FuncionarioDTO() {
-
-	}
-
-	public FuncionarioDTO(Funcionario funcionario) {
-		super();
-		this.id = funcionario.getId();
-		this.matricula = funcionario.getMatricula();
-		this.nome = funcionario.getNome();
-		this.email = funcionario.getEmail();
-		this.logradouro = funcionario.getEndereco().getLogradouro();
-		this.numero = funcionario.getEndereco().getNumero();
-		this.cep = funcionario.getEndereco().getCep();
-		this.complemento = funcionario.getEndereco().getComplemento();
-		this.bairro = funcionario.getEndereco().getBairro();
-		this.cidadeId = funcionario.getEndereco().getCidade().getId();
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public FuncionarioNewDTO() {
+		
 	}
 
 	public String getMatricula() {
@@ -86,6 +68,14 @@ public class FuncionarioDTO implements Serializable {
 		this.nome = nome;
 	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -94,8 +84,12 @@ public class FuncionarioDTO implements Serializable {
 		this.email = email;
 	}
 
-	public Integer getCidadeId() {
-		return cidadeId;
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
 	}
 
 	public String getLogradouro() {
@@ -138,8 +132,12 @@ public class FuncionarioDTO implements Serializable {
 		this.cep = cep;
 	}
 
+	public Integer getCidadeId() {
+		return cidadeId;
+	}
+
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
 	}
-		
+
 }
