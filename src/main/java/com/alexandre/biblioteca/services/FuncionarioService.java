@@ -68,22 +68,18 @@ public class FuncionarioService {
 	}	
 	
 	public Funcionario fromDTO(FuncionarioDTO objDto) {			
-		Funcionario funcionario = new Funcionario(objDto.getId(), objDto.getMatricula(),objDto.getNome(), null, objDto.getEmail());
-		
 		Cidade cidade  = new Cidade(objDto.getCidadeId(),null, null);
-		Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getBairro(), objDto.getComplemento(), objDto.getCep(), cidade);
-		funcionario.setEndereco(endereco);
-
+		Endereco endereco = new Endereco(objDto.getEnderecoId(), objDto.getLogradouro(), objDto.getNumero(), objDto.getBairro(), objDto.getComplemento(), objDto.getCep(), cidade);
+		Funcionario funcionario = new Funcionario(objDto.getId(), objDto.getMatricula(),objDto.getNome(), null, objDto.getEmail(), endereco);
+		funcionario.getTelefones().addAll(objDto.getTelefones());		
 		return funcionario;
 	}
 	
-	public Funcionario fromDTO(FuncionarioNewDTO objDto) {			
-		Funcionario funcionario = new Funcionario(null, objDto.getMatricula(),objDto.getNome(), objDto.getCpf(), objDto.getEmail());
-		funcionario.getTelefones().addAll(objDto.getTelefones());
+	public Funcionario fromDTO(FuncionarioNewDTO objDto) {
 		Cidade cidade  = new Cidade(objDto.getCidadeId(),null, null);
 		Endereco endereco = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getBairro(), objDto.getComplemento(), objDto.getCep(), cidade);
-		funcionario.setEndereco(endereco);
-		
+		Funcionario funcionario = new Funcionario(null, objDto.getMatricula(),objDto.getNome(), objDto.getCpf(), objDto.getEmail(), endereco);
+		funcionario.getTelefones().addAll(objDto.getTelefones());		
 		return funcionario;
 	}
 	
@@ -92,5 +88,6 @@ public class FuncionarioService {
 		newObj.setNome(obj.getNome());			
 		newObj.setEmail(obj.getEmail());
 		newObj.setEndereco(obj.getEndereco());
+		newObj.setTelefones((obj.getTelefones()));
 	}
 }

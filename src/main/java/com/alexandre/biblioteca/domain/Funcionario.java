@@ -48,13 +48,14 @@ public class Funcionario implements Serializable {
 		
 	}
 
-	public Funcionario(Integer id, String matricula, String nome, String cpf, String email) {
+	public Funcionario(Integer id, String matricula, String nome, String cpf, String email, Endereco endereco) {
 		super();
 		this.id = id;
 		this.matricula = matricula;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
+		this.endereco = endereco;
 	}
 
 	public Integer getId() {

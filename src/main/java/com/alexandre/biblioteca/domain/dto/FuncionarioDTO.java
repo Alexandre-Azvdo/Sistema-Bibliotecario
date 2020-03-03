@@ -1,6 +1,8 @@
 package com.alexandre.biblioteca.domain.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -23,9 +25,11 @@ public class FuncionarioDTO implements Serializable {
 	@Length(min = 3, max = 50, message = "O tamanho deve ser entre 3 e 50 caracteres")
 	private String nome;
 	
-	@Email
+	@Email(message = "Email inválido")
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String email;
+	
+	private Set<String> telefones = new HashSet<>();
 	
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String logradouro;
@@ -40,6 +44,9 @@ public class FuncionarioDTO implements Serializable {
 	
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String cep;
+	
+	@NotNull(message = "Preenchimento obrigatório!")
+	private Integer enderecoId;
 	
 	@NotNull(message = "Preenchimento obrigatório!")
 	private Integer cidadeId;
@@ -60,6 +67,7 @@ public class FuncionarioDTO implements Serializable {
 		this.complemento = funcionario.getEndereco().getComplemento();
 		this.bairro = funcionario.getEndereco().getBairro();
 		this.cidadeId = funcionario.getEndereco().getCidade().getId();
+		this.enderecoId = funcionario.getEndereco().getId();
 	}
 
 	public Integer getId() {
@@ -94,8 +102,12 @@ public class FuncionarioDTO implements Serializable {
 		this.email = email;
 	}
 
-	public Integer getCidadeId() {
-		return cidadeId;
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
 	}
 
 	public String getLogradouro() {
@@ -140,6 +152,18 @@ public class FuncionarioDTO implements Serializable {
 
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
+	}
+	
+	public Integer getCidadeId() {
+		return cidadeId;
+	}
+
+	public Integer getEnderecoId() {
+		return enderecoId;
+	}
+
+	public void setEnderecoId(Integer enderecoId) {
+		this.enderecoId = enderecoId;
 	}
 		
 }

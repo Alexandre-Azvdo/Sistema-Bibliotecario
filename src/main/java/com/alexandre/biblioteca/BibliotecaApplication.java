@@ -33,7 +33,7 @@ import com.alexandre.biblioteca.repositories.LeitorRepository;
 import com.alexandre.biblioteca.repositories.LivroRepository;
 
 @SpringBootApplication
-public class BibliotecaApplication implements CommandLineRunner{
+public class BibliotecaApplication implements CommandLineRunner {
 	
 	@Autowired
 	private LivroRepository livroRepository;
@@ -159,18 +159,18 @@ public class BibliotecaApplication implements CommandLineRunner{
 		Endereco endereco1 = new Endereco(null, "Rua Pedro Francisco Maciel", "904", "Santa Rosa", "Residencial", "58540-000", c1);
 		Endereco endereco2 = new Endereco(null, "Rua Praça da Bandeira", "s/n", "Centro", "Orgão Público", "63210-000", c3);
 		Endereco endereco3 = new Endereco(null, "Av. Floriano Peixoto", "21", "Centro", "Apt. 300", "75440-000", c2);
+		Endereco endereco4 = new Endereco(null, "Rua dos Sorrisos", "03", "Largo Alto", "Apt 02", "58540-000", c1);
 		
 		leitor1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
 		leitor2.getEnderecos().addAll(Arrays.asList(endereco3));		
 		
 		leitorRepository.saveAll(Arrays.asList(leitor1, leitor2));
 		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2, endereco3));		
-		contatoRepository.saveAll(Arrays.asList(contato1, contato2));
+		contatoRepository.saveAll(Arrays.asList(contato1, contato2));		
 		
-		Funcionario funcionario1 = new Funcionario(null, "2020332212321", "Maria de Fátma Alves Lira", "435.321.112-98", "maria@gmail.com");
+		Funcionario funcionario1 = new Funcionario(null, "2020332212321", "Maria de Fátma Alves Lira", "435.321.112-98", "maria@gmail.com", endereco4);
 		funcionario1.getTelefones().addAll(Arrays.asList("(83)99543-2211", "(83)98865-0092"));
-		Endereco endereco4 = new Endereco(null, "Rua dos Sorrisos", "03", "Largo Alto", "Apt 02", "58540-000", c1);
-		funcionario1.setEndereco(endereco4);		
+				
 		funcionarioRepository.saveAll(Arrays.asList(funcionario1));
 		
 		Emprestimo emp1 = new Emprestimo(null, sdf.parse("04/02/2020 10:12"), sdf.parse("14/02/2020 08:00"), StatusEmprestimo.EM_ANDAMENTO, leitor1, funcionario1, exemplar11);
