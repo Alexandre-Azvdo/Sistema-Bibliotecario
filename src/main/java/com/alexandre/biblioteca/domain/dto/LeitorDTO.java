@@ -1,17 +1,21 @@
 package com.alexandre.biblioteca.domain.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.alexandre.biblioteca.domain.Endereco;
 import com.alexandre.biblioteca.domain.Leitor;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -31,8 +35,13 @@ public class LeitorDTO implements Serializable{
 	
 	private Integer status;
 	
-	private Set<String> emails = new HashSet<>();	
+	@Email(message = "Email inválido")
+	@NotEmpty(message = "Preenchimento obrigatório!")
+	private String email;
+	
 	private Set<String> telefones = new HashSet<>();
+	
+	private List<Endereco> enderecos = new ArrayList<>();
 	
 	public LeitorDTO() {
 
@@ -43,8 +52,7 @@ public class LeitorDTO implements Serializable{
 		this.nome = leitor.getNome();
 		this.dataNascimento = leitor.getDataNascimento();
 		this.status = leitor.getStatus().getCod();
-		this.emails.addAll(leitor.getContato().getEmails());
-		this.telefones.addAll(leitor.getContato().getTelefones());
+		this.email = leitor.getEmail();
 	}
 
 	public Integer getId() {
@@ -79,20 +87,28 @@ public class LeitorDTO implements Serializable{
 		this.status = status;
 	}
 
-	public Set<String> getEmails() {
-		return emails;
-	}
-
-	public void setEmails(Set<String> emails) {
-		this.emails = emails;
-	}
-
 	public Set<String> getTelefones() {
 		return telefones;
 	}
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
 }

@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
 
 public class FuncionarioNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +24,7 @@ public class FuncionarioNewDTO implements Serializable {
 	
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Length(min = 11, max = 14, message = "O tamanho deve ser exatamente 11 caracteres númericos")
+	@CPF
 	private String cpf;
 	
 	@Email

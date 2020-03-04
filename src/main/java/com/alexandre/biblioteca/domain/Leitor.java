@@ -3,16 +3,19 @@ package com.alexandre.biblioteca.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,9 +39,11 @@ public class Leitor implements Serializable {
 	private String cpf;
 	private Integer status;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "contato_id")
-	private Contato contato;
+	private String email;
+	
+	@ElementCollection
+	@CollectionTable(name = "TELEFONE_LEITOR")
+	private Set<String> telefones = new HashSet<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="LEITOR_ENDERECO", 
@@ -54,14 +59,14 @@ public class Leitor implements Serializable {
 		
 	}
 	
-	public Leitor(Integer id, String nome, Date dataNascimento, String cpf, StatusLeitor status, Contato contato) {
+	public Leitor(Integer id, String nome, Date dataNascimento, String cpf, StatusLeitor status, String email) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
 		this.status = (status == null) ? null : status.getCod();
-		this.contato = contato;
+		this.email = email;
 	}
 
 	public Integer getId() {
@@ -118,14 +123,22 @@ public class Leitor implements Serializable {
 
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
+	}	
+
+	public String getEmail() {
+		return email;
 	}
 
-	public Contato getContato() {
-		return contato;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setContato(Contato contato) {
-		this.contato = contato;
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
 	}
 
 	@Override
