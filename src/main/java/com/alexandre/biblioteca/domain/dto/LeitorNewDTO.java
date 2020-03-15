@@ -15,8 +15,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.alexandre.biblioteca.domain.Endereco;
+import com.alexandre.biblioteca.services.validation.LeitorInsert;
 
-
+@LeitorInsert
 public class LeitorNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
