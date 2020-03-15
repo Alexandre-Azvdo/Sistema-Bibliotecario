@@ -11,7 +11,9 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import com.alexandre.biblioteca.domain.Funcionario;
+import com.alexandre.biblioteca.services.validation.FuncionarioUpdate;
 
+@FuncionarioUpdate
 public class FuncionarioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

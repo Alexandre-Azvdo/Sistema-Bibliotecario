@@ -17,8 +17,10 @@ import org.hibernate.validator.constraints.Length;
 
 import com.alexandre.biblioteca.domain.Endereco;
 import com.alexandre.biblioteca.domain.Leitor;
+import com.alexandre.biblioteca.services.validation.LeitorUpdate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+@LeitorUpdate
 public class LeitorDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
